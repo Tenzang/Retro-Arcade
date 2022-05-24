@@ -29,18 +29,19 @@ const SnakeBoard = () => {
     const [direction, setDirection] = useState('right');
     const [food, setFood] = useState(randomPosition);
 
-     console.log('snake', snake.length)
 
-    const displayRows = rows.map((row) => 
-            <div className="snakeRow">
-                {row.map((e) => {
+    //  console.log('snake', snake.length)
+
+    const displayRows = rows.map((row, x) => 
+            <div key={String(x)} className="snakeRow">
+                {row.map((e, y) => {
                     switch(e) {
                         case 'blank':
-                            return (<div className="snakeCell"></div>)
+                            return (<div key={String(x) + String(y)} className="snakeCell"></div>)
                         case 'snake':
-                            return (<div className="snake"></div>)
+                            return (<div key={String(x) + String(y)} className="snake"></div>)
                         case 'food':
-                            return (<div className="food"></div>)                       
+                            return (<div key={String(x) + String(y)}  className="food"></div>)                       
                         }
                     })
                 }
@@ -61,8 +62,8 @@ const SnakeBoard = () => {
     //     displaySnake()
     // },[displayRows]);
 
-    
     const moveSnake = () => {
+        // console.log('snake moving')
         const newSnake = [];
         switch(direction) {
             case 'right':
@@ -82,19 +83,26 @@ const SnakeBoard = () => {
             snake.forEach(cell => {
                 newSnake.push(cell);
             })
-        
 
-        if(snake[0].x === food.x && snake[0].y === food.y) {
-            setFood(randomPosition);
-        } else {
-            newSnake.pop();
-        }
+            if (snake[0].x === food.x && snake[0].y === food.y) {
+                setFood(randomPosition);
+            } else if (snake.length > 4) { // 
+                for (let i = 4; i < snake.length; i++) {
+                    if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
+                        console.log('collision')
+                    } 
+                }
+                newSnake.pop();
+            } else {
+                newSnake.pop();
+            }
+
 
         setSnake(newSnake);
         displaySnake();
     }
-
-    useInterval(moveSnake, 200);
+    // onsole.log('setting interval')
+    useInterval(moveSnake, 300);
 
     // setInterval doesn't work because when its in a useEffect, its called only once
     function useInterval(callback, delay) {
@@ -119,20 +127,19 @@ const SnakeBoard = () => {
     }
 
     const changeDirectionWithKeys = (e) => {
-        console.log(e.key);
         const { key } = e;
         switch(key) {
             case 'ArrowLeft':
-                setDirection('left')
+                (direction === 'right') ? setDirection('right') : setDirection('left')
                 break;
             case 'ArrowRight':
-                setDirection('right')
+                (direction === 'left') ? setDirection('left') : setDirection('right')
                 break;
             case 'ArrowUp':
-                setDirection('up')
+                (direction === 'down') ? setDirection('down') : setDirection('up')
                 break;
             case 'ArrowDown':
-                setDirection('down')
+                (direction === 'up') ? setDirection('up') : setDirection('down')
                 break;
             default:
                 break;

@@ -4,7 +4,7 @@ import SnakeBoard from './components/snake/SnakeBoard';
 function App() {
   return (
     <div className="App">
-      <Tetris />
+      {/* <Tetris /> */}
       <SnakeBoard />
     </div>
   );
