@@ -1,0 +1,35 @@
+.snakeCell {
+    width: 30px;
+    height: 30px;
+    /* border: 1px solid black; */
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.snakeRow {
+    margin: 0;
+    box-sizing: border-box;
+    height: 30px;
+}
+
+
+.snakeGame {
+    border: 3px solid black;
+    display: inline-block;
+}
+
+.snake {
+    width: 30px;
+    height: 30px;
+    background-color: green;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.food {
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    display: inline-block;
+    box-sizing: border-box;
+}

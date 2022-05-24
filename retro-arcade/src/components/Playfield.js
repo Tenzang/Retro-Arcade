@@ -24,19 +24,19 @@ class Playfield extends Component {
         this.progressPiece = () => {
             const { grid, activePiece } = this.state;
 
-            console.log("grid before update:", grid);
+            //console.log("grid before update:", grid);
             
             activePiece.forEach(cell => {
-                console.log(cell);
+                // console.log(cell);
                 grid[cell.xPos][cell.yPos] = false;
                 cell.xPos++
                 grid[cell.xPos][cell.yPos] = true;
-                console.log(cell);
+                // console.log(cell);
             });
 
             this.setState({grid: grid, activePiece: activePiece});
             
-            console.log("grid after update:", grid);
+            // console.log("grid after update:", grid);
             setTimeout(this.progressPiece, 1000);
             // debugger;
         };
