@@ -2,13 +2,12 @@ import React from "react";
 
 const Controls = ({setPlay, direction, setDirection}) => {
 
-    function handlePlay(e, val) {
+    function handlePlay(e, val) { // play or pause
         e.preventDefault();
         (val ? setPlay(true) : setPlay(false))
-        console.log(val)
     }
 
-    function handleDirection(e, val) {
+    function handleDirection(e, val) { // set direction of snake 
         e.preventDefault();
         switch(val) {
             case 'ArrowLeft':
@@ -31,16 +30,16 @@ const Controls = ({setPlay, direction, setDirection}) => {
 
 
     return (
-        <div>
-            <div>
-                <button onClick={(e) => handlePlay(e, true)}>Play</button>
-                <button onClick={(e) => handlePlay(e, false)}>Pause</button>
+        <div className="controls">
+            <div className="play-pause">
+                <button className="play" onClick={(e) => handlePlay(e, true)}>Play</button>
+                <button className="pause" onClick={(e) => handlePlay(e, false)}>Pause</button>
             </div>
-            <div>
-                <button onClick={(e) => handleDirection(e, 'ArrowUp')}>Up</button>
-                <button onClick={(e) => handleDirection(e, 'ArrowDown')}>Down</button>
-                <button onClick={(e) => handleDirection(e, 'ArrowLeft')}>Left</button>
-                <button onClick={(e) => handleDirection(e, 'ArrowRight')}>Right</button>
+            <div className="controls-direction">
+                <button className="left" onClick={(e) => handleDirection(e, 'ArrowLeft')}>Left</button>
+                <button className="up" onClick={(e) => handleDirection(e, 'ArrowUp')}>Up</button>
+                <button className="down" onClick={(e) => handleDirection(e, 'ArrowDown')}>Down</button>
+                <button className="right" onClick={(e) => handleDirection(e, 'ArrowRight')}>Right</button>
             </div>
         </div>
     )

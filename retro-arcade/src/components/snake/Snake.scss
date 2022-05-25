@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+.Snakeboard {
+    text-align: center;
+}
+
+.snakeCell {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.snakeRow {
+    margin: 0;
+    box-sizing: border-box;
+    height: 30px;
+}
+
+
+.snakeGame {
+    border: 3px solid black;
+    display: inline-block;
+}
+
+.snake {
+    width: 30px;
+    height: 30px;
+    background-color: green;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.food {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.egg {
+    width: 25px;
+    height: 30px;
+    background-color: red;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    margin: 0 auto;
+}
+
+.controls {
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px auto;
+}
+
+.controls-direction {
+    height: 200px;
+}
+
+@mixin controlBtn {
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    position: relative;
+    background-color: blue;
+    color: white;
+    font-size: larger;
+    box-shadow: 3px 3px 3px rgba(111, 110, 110, 0.594)
+}
+
+.up {
+    @include controlBtn;
+    position: relative;
+    left: 30px;
+}
+
+.down {
+    @include controlBtn;
+    position: relative;
+    top: 100px;
+    left: -50px;
+}
+
+.left {
+    @include controlBtn;
+    position: relative;
+    top: 55px;
+    left: 30px;
+}
+
+.right {
+    @include controlBtn;
+    position: relative;
+    top: 55px;
+    left: -50px;
+}
+
+.play {
+    @include controlBtn;
+    background-color: green;
+    margin-right: 10px;
+}
+
+.pause {
+    @include controlBtn;
+    background-color: red;
+}
+
+.message {
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    position: fixed;
+    top: 0;
+    padding-top: 300px;
+    animation: blink 1s linear infinite;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    z-index: 10;
+}
+
+.messageText {
+    font-size: 400%;
+    margin-bottom: 20px;
+}
+
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.play-pause {
+    margin: 50px auto;
+}
+
+
