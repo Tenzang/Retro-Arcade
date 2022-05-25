@@ -9,7 +9,8 @@ const SnakeBoard = () => {
     const width = 20;
     const height = 20;
     const instruction = '[ Press "Space" to start ]'
-    // const initialSnake = [{x:0, y:0}]
+    const initialSnake = [{x:0, y:0}]
+    const initialDirection = 'right'
 
     const initialRows = [];
     for (let i = 0; i < 20; i++) {
@@ -29,9 +30,8 @@ const SnakeBoard = () => {
     }
 
     const [rows, setRows] = useState(initialRows);
-    const [initialSnake] = useState([{x:0, y:0}]);
-    const [snake, setSnake] = useState(_.cloneDeep(initialSnake)); // our initial position for the snake is x:0, y:0
-    const [direction, setDirection] = useState('right'); // Figure out why this state is not updating
+    const [snake, setSnake] = useState(initialSnake); // our initial position for the snake is x:0, y:0
+    const [direction, setDirection] = useState(initialDirection); // Figure out why this state is not updating
     const [food, setFood] = useState(randomPosition);
     const [play, setPlay] = useState(false);
     const [visibility, setVisibility] = useState('visible')
@@ -178,9 +178,13 @@ const SnakeBoard = () => {
     const gameOver = () => {
         setMessage('Game Over')
         setVisibility('visible')
-        setSnake(_.cloneDeep(initialSnake))
         setPlay(false)
+    }
 
+    const resetGame = () => {
+        setSnake(initialSnake);
+        setDirection(initialDirection);
+        setPlay(true)
     }
 
     useEffect(() => {
@@ -208,6 +212,7 @@ const SnakeBoard = () => {
                 <div className='instruction' style={{visibility: visibility}}>{instruction}</div>
                 </div>
             <div>Points: {snake.length-1}</div>
+            <button onClick={resetGame}>Reset</button>
             <Controls setPlay={setPlay} direction={direction} setDirection={setDirection} />
         </div>
     )
