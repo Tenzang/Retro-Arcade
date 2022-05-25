@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './Snake.css'
+import './Snake.css';
+import Controls from './Controls';
 
 const SnakeBoard = () => {
 
     // grid 20 by 20 
     const width = 20;
     const height = 20;
+    const delay = 300;
 
     const initialRows = [];
     for (let i = 0; i < 20; i++) {
@@ -26,8 +28,9 @@ const SnakeBoard = () => {
 
     const [rows, setRows] = useState(initialRows);
     const [snake, setSnake] = useState([{x:0, y:0}]); // our initial position for the snake is x:0, y:0
-    const [direction, setDirection] = useState('right');
+    const [direction, setDirection] = useState('right'); // Figure out why this state is not updating
     const [food, setFood] = useState(randomPosition);
+    const [play, setPlay] = useState(true);
 
 
     //  console.log('snake', snake.length)
@@ -58,9 +61,6 @@ const SnakeBoard = () => {
         setRows(newRows);
     }
 
-    // useEffect(() => {
-    //     displaySnake()
-    // },[displayRows]);
 
     const moveSnake = () => {
         // console.log('snake moving')
@@ -102,12 +102,11 @@ const SnakeBoard = () => {
         displaySnake();
     }
     // onsole.log('setting interval')
-    useInterval(moveSnake, 300);
+    useInterval(moveSnake, play ? delay : null);
 
     // setInterval doesn't work because when its in a useEffect, its called only once
     function useInterval(callback, delay) {
         const savedCallback = useRef(); // holds the mutable value without re-rendering
-
         //remember the latest callback
         useEffect(() => {
             savedCallback.current = callback;
@@ -127,19 +126,24 @@ const SnakeBoard = () => {
     }
 
     const changeDirectionWithKeys = (e) => {
+        console.log(e)
         const { key } = e;
         switch(key) {
             case 'ArrowLeft':
                 (direction === 'right') ? setDirection('right') : setDirection('left')
+                console.log('ArrowLeft', direction); // async 
                 break;
             case 'ArrowRight':
                 (direction === 'left') ? setDirection('left') : setDirection('right')
+                console.log('ArrowRight', direction);
                 break;
             case 'ArrowUp':
                 (direction === 'down') ? setDirection('down') : setDirection('up')
+                console.log('ArrowUp', direction);
                 break;
             case 'ArrowDown':
-                (direction === 'up') ? setDirection('up') : setDirection('down')
+               (direction === 'up') ? setDirection('up') : setDirection('down')
+                console.log('ArrowDown', direction);
                 break;
             default:
                 break;
@@ -147,16 +151,21 @@ const SnakeBoard = () => {
         }
     }
 
-    document.addEventListener("keydown", changeDirectionWithKeys, false);
-
-
-
+   
+    useEffect(() => {
+        document.addEventListener("keyup", changeDirectionWithKeys);
+        return () => {
+            document.removeEventListener("keyup", changeDirectionWithKeys);
+        }
+      
+    },[direction])
 
 
     return (
         <div className='Snakeboard'>
             <h1>Snake</h1>
             <div className='snakeGame'>{displayRows}</div>
+            <Controls setPlay={setPlay} direction={direction} setDirection={setDirection} />
         </div>
     )
 }
