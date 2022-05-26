@@ -289,8 +289,6 @@ const SnakeBoard = () => {
         <div className='Snakeboard'>
             <h1 className='gameTitle'>Snake</h1>
             <div className='snakeGame'>{displayRows}</div>
-            <div className='snakeGameBack'>
-            </div>
             <div className='message' style={{visibility: visibility}}>
                 <div className='messageText'>{message}</div>
                 <div style={{visibility: showInstruction}} className='instruction'>{instruction}</div>
