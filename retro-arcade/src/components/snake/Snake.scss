@@ -1,50 +1,87 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+$font: 'Press Start 2P', cursive;
+$box: 30px;
+
+body {
+    margin: 0;
+}
 
 .Snakeboard {
     text-align: center;
 }
 
 .snakeCell {
-    width: 30px;
-    height: 30px;
+    width: $box;
+    height: $box;
     display: inline-block;
     box-sizing: border-box;
+    background-color: black;
 }
 
 .snakeRow {
     margin: 0;
     box-sizing: border-box;
-    height: 30px;
+    height: $box;
 }
 
 
 .snakeGame {
-    border: 3px solid black;
+    background-color: black;
     display: inline-block;
 }
 
+.snakeGameBack {
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+      );
+      margin: 0 auto;
+      position: relative;
+      top: -610px;
+    //   left: -2px;
+      background-size: 400%;
+      z-index: -1;
+      filter: blur(5px);
+      -webkit-filter: blur(5px);
+      width: 620px;
+      height: 620px;
+      animation: glowing-button-85 20s linear infinite;
+      transition: opacity 0.3s ease-in-out;
+      border-radius: 10px;
+}
+
 .snake {
-    width: 30px;
-    height: 30px;
+    width: $box;
+    height: $box;
     background-color: green;
     display: inline-block;
     box-sizing: border-box;
 }
 
 .food {
-    width: 30px;
-    height: 30px;
+    width: $box;
+    height: $box;
     display: inline-block;
     box-sizing: border-box;
+    background-color: black;
 }
 
-.egg {
-    width: 25px;
-    height: 30px;
-    background-color: red;
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    margin: 0 auto;
+.gameTitle {
+    font-family: $font;
+}
+
+.points {
+    font-family: $font;
+    margin: 10px auto;
 }
 
 .controls {
@@ -65,8 +102,8 @@
     position: relative;
     background-color: blue;
     color: white;
-    font-size: larger;
-    box-shadow: 3px 3px 3px rgba(111, 110, 110, 0.594)
+    box-shadow: 3px 3px 3px rgba(111, 110, 110, 0.594);
+    font-family: $font;
 }
 
 .up {
@@ -108,21 +145,33 @@
 }
 
 .message {
-    font-family: 'Press Start 2P', cursive;
+    font-family: $font;
     text-transform: uppercase;
-    position: fixed;
+    position: absolute;
     top: 0;
     padding-top: 300px;
-    animation: blink 1s linear infinite;
+    // animation: blink 2s linear infinite;
     width: 100vw;
     height: 100vh;
     text-align: center;
-    z-index: 10;
+    z-index: 1;
+    color: white;
+    text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #0fa,
+      0 0 82px #0fa,
+      0 0 92px #0fa,
+      0 0 102px #0fa,
+    //  0 0 151px #0fa;
 }
 
 .messageText {
     font-size: 400%;
     margin-bottom: 20px;
+    animation: blink 2s linear infinite;
+
 }
 
 
@@ -137,3 +186,264 @@
 }
 
 
+.reset {
+    margin-top: 10px;
+    font-size: 1.3em;
+}
+
+
+
+.button-85 {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-family: $font;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+
+.apple  {
+    width: 25px;
+    height: 20px;
+    background-color:  #ff4355;
+    box-shadow: inset 0.2em -0.2em #cc1022;
+    border-radius: 2.5em 2.5em 3em 3em;
+    position: relative;
+
+    // position:absolute;
+    // top: 1.3em;
+    // left:0.3em;
+}
+ 
+.leaf {
+    content: "";
+    position: relative;
+    // top: -5px;
+    left: 15px;
+    height: 0;
+    width: 1px;
+    border: 5px solid #539e3d;
+    border-radius: 50% 0 50% 0;
+    border-bottom-color: #437512;
+    border-right-color: #437512;
+}
+
+/* ------- media queries -------------*/
+
+@media only screen and (max-width: 600px) {
+    .snakeCell {
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        box-sizing: border-box;
+        background-color: black;
+    }
+
+    .snakeRow {
+        margin: 0;
+        box-sizing: border-box;
+        height: 15px;
+    }
+    
+    .snake {
+        width: 15px;
+        height: 15px;
+        background-color: green;
+        display: inline-block;
+        box-sizing: border-box;
+    }
+    
+    .food {
+        width: 15px;
+        height: 15px;
+        display: inline-block;
+        box-sizing: border-box;
+        background-color: black;
+    }
+    
+    .apple  {
+        width: 13px;
+        height: 10px;
+        background-color:  #ff4355;
+        box-shadow: inset 0.2em -0.2em #cc1022;
+        border-radius: 2.5em 2.5em 3em 3em;
+        position: relative;
+        box-sizing: border-box;
+    }
+     
+    .leaf {
+        position: relative;
+        // top: -5px;
+        left: 8px;
+        height: 0;
+        width: 1px;
+        border: 2px solid #539e3d;
+        border-radius: 50% 0 50% 0;
+        border-bottom-color: #437512;
+        border-right-color: #437512;
+        box-sizing: border-box;
+    }
+
+    /* ------------------ controls -----------------*/
+    .controls {
+        width: 390px;
+        display: flex;
+        justify-content: space-between;
+        margin: 10px auto;
+        box-sizing: border-box;
+    }
+    
+    .controls-direction {
+        height: 200px;
+        width: 50%;
+        box-sizing: border-box;
+    }
+    
+    @mixin controlBtn {
+        width: 70px;
+        height: 70px;
+        border-radius: 70px;
+        position: relative;
+        background-color: blue;
+        color: white;
+        font-size: 0.7em;
+        box-shadow: 3px 3px 3px rgba(111, 110, 110, 0.594);
+        font-family: $font;
+    }
+    
+    .up {
+        @include controlBtn;
+        position: relative;
+        left: -35px;
+    }
+    
+    .down {
+        @include controlBtn;
+        position: relative;
+        top: 50px;
+        left: 35px;
+    }
+    
+    .left {
+        @include controlBtn;
+        position: relative;
+        top: 55px;
+        left: -25px;
+    }
+    
+    .right {
+        @include controlBtn;
+        position: relative;
+        top: -12px;
+        left: 20px;
+    }
+    
+    .play {
+        @include controlBtn;
+        background-color: green;
+        margin-right: 10px;
+    }
+    
+    .pause {
+        @include controlBtn;
+        background-color: red;
+    }
+
+
+
+
+    .message {
+        font-family: $font;
+        text-transform: uppercase;
+        position: absolute;
+        top: 0;
+        padding-top: 180px;
+        // animation: blink 2s linear infinite;
+        width: 100vw;
+        height: 100vh;
+        text-align: center;
+        z-index: 1;
+        color: white;
+        text-shadow:
+          0 0 7px #fff,
+          0 0 10px #fff,
+          0 0 21px #fff,
+          0 0 42px #0fa,
+          0 0 82px #0fa,
+          0 0 92px #0fa,
+          0 0 102px #0fa,
+        //  0 0 151px #0fa;
+    }
+
+    .messageText {
+        font-size: 200%;
+        margin-bottom: 20px;
+        animation: blink 2s linear infinite;
+    
+    }
+
+    .instruction {
+        font-size: 0.5em;
+    }
+
+}

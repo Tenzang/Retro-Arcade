@@ -8,26 +8,48 @@ const SnakeBoard = () => {
     // grid 20 by 20 
     const width = 20;
     const height = 20;
-    const instruction = '[ Press "Space" to start ]'
-    const initialSnake = [{x:0, y:0}]
-    const initialDirection = 'right'
+    const instruction = '[ Press "Space" to start ]';
+    const initialSnake = [{x:0, y:0}];
+    const initialDirection = 'right';
+       
 
     const initialRows = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < height; i++) {
         initialRows.push([]);
-        for (let j = 0; j < 20; j++) {
+        for (let j = 0; j < width; j++) {
             initialRows[i].push('blank') // string 
         }
     }
 
     // adding food - randomize
-    const randomPosition = () => {
+    let foodPosition;
+    const newRows = initialRows; 
+
+    const randomPosition = () => { // need to add base case = when there are no blanks left for food position
         const position = {
             x: Math.floor(Math.random()*width),
             y: Math.floor(Math.random()*height)
         };
-        return position;
+        console.log('position', position, rows[position.x][position.y])
+    
+        if (!newRows.some(row => row.includes('blank'))) { // if there are no blank rows = you win!
+            setMessage('You win!')
+            setVisibility('visible')
+            setPlay(false)
+        } else if (rows[position.x][position.y] === 'snake' || rows[position.x][position.y] === 'food') {
+            console.log('recalling randomPosition')
+            return randomPosition();
+        } else {
+            foodPosition = position;
+            return foodPosition;
+        }
+        // return position;
+        
     }
+
+    // const blanksLeft = (array, search) {
+
+    // }
 
     const [rows, setRows] = useState(initialRows);
     const [snake, setSnake] = useState(initialSnake); // our initial position for the snake is x:0, y:0
@@ -37,6 +59,9 @@ const SnakeBoard = () => {
     const [visibility, setVisibility] = useState('visible')
     const [message, setMessage] = useState('Start')
     const [delay, setDelay] = useState(300)
+    const [moves, setMoves] = useState([])
+    const [showReset, setShowReset] = useState('hidden')
+    const [showInstruction, setShowInstruction] = useState('visible')
 
     //  console.log('snake', snake.length)
 
@@ -49,26 +74,32 @@ const SnakeBoard = () => {
                         case 'snake':
                             return (<div key={String(x) + String(y)} className="snake"></div>)
                         case 'food':
-                            return (<div key={String(x) + String(y)}  className="food"><div className='egg'></div></div>)                       
+                            return (
+                            <div key={String(x) + String(y)}  className="food">
+                                <div className='leaf'></div> 
+                                <div className='apple'></div>
+                            </div>)                       
                         }
                     })
                 }
             </div>
     );
 
-    
+
     const displaySnake = () => {
-        const newRows = initialRows;
+        //const newRows = initialRows;
         snake.forEach(cell => {
             newRows[cell.x][cell.y]='snake';
         })
         newRows[food.x][food.y]='food';
         setRows(newRows);
+        //console.log('rows after setting food', newRows, newRows.some(row => row.includes('food')))
     }
 
 
     const moveSnake = () => {
         // console.log('snake moving')
+        changeDirection();
         const newSnake = [];
         switch(direction) {
             case 'right':
@@ -90,7 +121,9 @@ const SnakeBoard = () => {
             })
 
             if (snake[0].x === food.x && snake[0].y === food.y) { // when the snake eats food
-                setFood(randomPosition);
+                // console.log('rows after setting food', newRows)
+                console.log('eaten')
+                setFood(randomPosition());
                 increaseSpeed()
             } else if (snake.length > 4) { // 
                 for (let i = 4; i < snake.length; i++) {
@@ -132,45 +165,88 @@ const SnakeBoard = () => {
 
     }
 
+
+    const changeDirection = () => {
+        if (moves.length === 0) {
+            return
+        } else {
+            setDirection(moves.shift())
+            //console.log(moves);
+        }
+    }
+ 
+    // const changeDirectionWithKeys = (e) => {
+    //     console.log(e)
+    //     const { key } = e;
+    //     switch(key) {
+    //         case 'ArrowLeft':
+    //             (direction === 'right') ? setDirection('right') : setDirection('left')
+    //             break;
+    //         case 'ArrowRight':
+    //             (direction === 'left') ? setDirection('left') : setDirection('right')
+    //             break;
+    //         case 'ArrowUp':
+    //             (direction === 'down') ? setDirection('down') : setDirection('up')
+    //             break;
+    //         case 'ArrowDown':
+    //            (direction === 'up') ? setDirection('up') : setDirection('down')
+    //             break;
+    //         default:
+    //             break;
+            
+    //     }
+    // }
+
     const changeDirectionWithKeys = (e) => {
-        console.log(e)
+        //console.log(e)
         const { key } = e;
         switch(key) {
             case 'ArrowLeft':
-                (direction === 'right') ? setDirection('right') : setDirection('left')
+                if (direction !== 'right') { 
+                    setMoves([...moves,'left'])
+                    // moves.push('left');
+                }
                 break;
             case 'ArrowRight':
-                (direction === 'left') ? setDirection('left') : setDirection('right')
+                if (direction !== 'left') { 
+                    setMoves([...moves, 'right'])
+                }
                 break;
             case 'ArrowUp':
-                (direction === 'down') ? setDirection('down') : setDirection('up')
+                if (direction !== 'down') {
+                    setMoves([...moves, 'up'])
+                }
                 break;
             case 'ArrowDown':
-               (direction === 'up') ? setDirection('up') : setDirection('down')
+               if (direction !== 'up') {
+                   setMoves([...moves, 'down'])
+                   // moves.push('down'); 
+                   // console.log('moves after key press', moves)
+                }
                 break;
             default:
                 break;
             
         }
     }
-
    
     useEffect(() => {
-        document.addEventListener("keyup", changeDirectionWithKeys);
+        document.addEventListener("keydown", changeDirectionWithKeys);
         return () => {
-            document.removeEventListener("keyup", changeDirectionWithKeys);
+            document.removeEventListener("keydown", changeDirectionWithKeys);
         }
         
     },[direction])
     
 
     const start = (e) => { //start game with a space bar - remove modal & event listener
-        console.log('start', e.code)
+        // console.log('start', e.code)
         switch(e.code) {
             case 'Space':
                 setPlay(true)
                 setVisibility('hidden')
-                document.removeEventListener("keyup", start);
+                setShowInstruction('hidden')
+                document.removeEventListener("keydown", start);
                 break;
         }
     }
@@ -179,18 +255,24 @@ const SnakeBoard = () => {
         setMessage('Game Over')
         setVisibility('visible')
         setPlay(false)
+        setShowReset('visible')
+        setShowInstruction('hidden')
     }
 
     const resetGame = () => {
         setSnake(initialSnake);
         setDirection(initialDirection);
         setPlay(true)
+        setShowReset('hidden')
+        setMessage('Start')
+        setVisibility('hidden')
+        setDelay(300)
     }
 
     useEffect(() => {
-        document.addEventListener("keyup", start);
+        document.addEventListener("keydown", start);
         return () => {
-            document.removeEventListener("keyup", start);
+            document.removeEventListener("keydown", start);
         }
     },[gameOver])
 
@@ -205,14 +287,17 @@ const SnakeBoard = () => {
 
     return (
         <div className='Snakeboard'>
-            <h1>Snake</h1>
+            <h1 className='gameTitle'>Snake</h1>
             <div className='snakeGame'>{displayRows}</div>
+            <div className='snakeGameBack'>
+            </div>
             <div className='message' style={{visibility: visibility}}>
                 <div className='messageText'>{message}</div>
-                <div className='instruction' style={{visibility: visibility}}>{instruction}</div>
-                </div>
-            <div>Points: {snake.length-1}</div>
-            <button onClick={resetGame}>Reset</button>
+                <div style={{visibility: showInstruction}} className='instruction'>{instruction}</div>
+                <button className="reset button-85" style={{visibility: showReset}} onClick={resetGame}>Reset</button>
+            </div>
+            <div className='points'>Points: {snake.length-1}</div>
+            <button className="reset button-85" onClick={resetGame}>Reset</button>
             <Controls setPlay={setPlay} direction={direction} setDirection={setDirection} />
         </div>
     )
