@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-$font: 'Press Start 2P', cursive;
 $box: 30px;
 
 body {
@@ -83,12 +82,8 @@ body {
     background-color: black;
 }
 
-.gameTitle {
-    font-family: $font;
-}
 
 .points {
-    font-family: $font;
     margin: 10px auto;
 }
 
@@ -111,7 +106,7 @@ body {
     background-color: blue;
     color: white;
     box-shadow: 3px 3px 3px rgba(111, 110, 110, 0.594);
-    font-family: $font;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .up {
@@ -153,7 +148,7 @@ body {
 }
 
 .message {
-    font-family: $font;
+    
     text-transform: uppercase;
     position: absolute;
     top: 0;
@@ -201,7 +196,6 @@ body {
 }
 
 
-
 .button-85 {
   padding: 0.6em 2em;
   border: none;
@@ -215,7 +209,7 @@ body {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  font-family: $font;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .button-85:before {
@@ -377,7 +371,7 @@ body {
         color: white;
         font-size: 0.7em;
         box-shadow: 3px 3px 3px rgba(111, 110, 110, 0.594);
-        font-family: $font;
+        
     }
     
     .up {
@@ -420,7 +414,7 @@ body {
 
 
     .message {
-        font-family: $font;
+        
         text-transform: uppercase;
         position: absolute;
         padding-top: 120px;
