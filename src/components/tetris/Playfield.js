@@ -87,7 +87,7 @@ class Playfield extends Component {
                 const newLines = state.lines + linesCleared
                 const newLevel = Math.floor(newLines/10) + 1;
                 const newDelay = 500 - (newLevel * 10);
-                
+
                 this.setState(
                     { 
                         score: newScore,
@@ -96,7 +96,10 @@ class Playfield extends Component {
                         delay: newDelay
                     });
 
-                props.changeScore(newScore);
+                const { changeScore, changeLinesCleared, changeLevel } = props;
+                changeScore(newScore);
+                changeLinesCleared(newLines);
+                changeLevel(newLevel);
             }
 
             return gridCopy;
