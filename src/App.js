@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+import Tetris from './components/tetris/Tetris';
+import SnakeBoard from './components/snake/SnakeBoard';
+import MyGame from './components/phaser/MyGame'
 import './App.css';
+import React, {Component} from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+// function App() {
+//   return (
+//     <div className="App">
+//         {/* <Tetris /> */}
+//         <SnakeBoard />
+//         <div>
+//             <h1>Hello</h1>
+//         </div>
+//         <div id="phaser">
+//         </div>
+//     </div>
+//   );
+// }
 
-export default App;
+// export default App;
+
+export default class App extends Component {
+    render() {
+     return (
+      <div style={{ textAlign: "center" }}>
+       <h1>Arcade Games</h1>
+       <Tetris />
+      </div>
+     );
+    }
+   }
