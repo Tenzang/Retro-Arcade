@@ -1,14 +1,19 @@
 import Phaser, { Scene } from 'phaser';
+import React, { Component } from 'react'
+import { ReactDOM } from 'react';
 import logoImg from './assets/logo.png';
+import App from '../../App'
 
-class MyGame extends Scene
-{
+class MyGame extends Scene {
     constructor ()
     {
         super();
         this.player = 0;
         this.cursors = 0;
+  
     }
+    
+
 
     preload ()
     {
@@ -19,6 +24,7 @@ class MyGame extends Scene
         this.load.spritesheet('dude', 'https://phaser.io/content/tutorials/making-your-first-phaser-3-game/dude.png',
             { frameWidth: 32, frameHeight: 48 }
         );
+
     }
       
     create ()
@@ -97,11 +103,14 @@ class MyGame extends Scene
             this.player.setVelocityY(-340);
         }        
     }
+
+    
+
 }
 
 const config = {
     type: Phaser.AUTO,
-    parent: 'phaser-example',
+    parent: 'phaser',
     width: 800,
     height: 600,
     physics: {
@@ -111,9 +120,17 @@ const config = {
             debug: false
         }
     },
-    scene: MyGame
+    scene: MyGame,
+    // dom: {
+    //     createContainer: true
+    // }
+    
 };
 
+
+
 const game = new Phaser.Game(config);
+
+ // ReactDOM.render(<App />, document.getElementById("phaser"));
 
 export default MyGame
