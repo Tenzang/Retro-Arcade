@@ -23,6 +23,7 @@ class Tetris extends Component {
     render() {
         return (
             <div>
+                <h3 className='gameTitle'>TETRIS</h3>
                 <ScoreDisplay score={ this.state.score } />
                 <PieceDisplay nextPiece={ this.state.nextPiece } />
                 <Playfield changeScore={ this.changeScore } changeNextPiece={ this.changeNextPiece } />
