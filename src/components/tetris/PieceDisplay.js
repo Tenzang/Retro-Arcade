@@ -1,7 +1,6 @@
 function PieceDisplay( props ) {
     let nextPiece = props.nextPiece;
     if (!nextPiece) return <div>loading...</div>;
-    console.log('nextPiece before translation:', nextPiece);
     let xOffset = nextPiece[0].x - 1;
     let yOffset = nextPiece[0].y - 1;
 
@@ -9,7 +8,6 @@ function PieceDisplay( props ) {
         cell.x = cell.x - xOffset;
         cell.y = cell.y - yOffset;
     })
-    console.log('nextPiece after translation:', nextPiece);
 
     const displayGrid = Array(4);
     for (let i = 0; i < 4; i++) {
@@ -19,8 +17,6 @@ function PieceDisplay( props ) {
     nextPiece.forEach(cell => {
         displayGrid[cell.y][cell.x] = true;
     });
-
-    console.table(displayGrid);
 
     return (
         <div className="grid display">

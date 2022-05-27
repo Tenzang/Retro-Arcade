@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import _, { delay } from 'lodash';
 
 import startingPieces from './helpers/segments';
 import './styles/tetris.css';
@@ -21,7 +21,7 @@ class Playfield extends Component {
         this.startingPieces = startingPieces;
         
         // ensures one timeout per playfield
-        this.timeout = null;
+        this.timeoutID = null;
         
         this.randomPiece = () => {
             // select piece randomely from startingPieces
@@ -33,10 +33,14 @@ class Playfield extends Component {
         }
 
         this.state = {
-            grid: grid,
+            emptyGrid: grid,
+            grid: _.cloneDeep(grid),
             activePiece: this.randomPiece(),
             score: 0,
-            nextPiece: this.randomPiece()
+            nextPiece: this.randomPiece(),
+            delay: 500,
+            lines: 0,
+            level: 1
         }
 
         // removes or adds piece to the grid
@@ -80,7 +84,18 @@ class Playfield extends Component {
             if (linesCleared) {
                 const { state } = this;
                 const newScore = state.score + points;
-                this.setState({ score: newScore });
+                const newLines = state.lines + linesCleared
+                const newLevel = Math.floor(newLines/10) + 1;
+                const newDelay = 500 - (newLevel * 10);
+                
+                this.setState(
+                    { 
+                        score: newScore,
+                        lines: newLines,
+                        level: newLevel,
+                        delay: newDelay
+                    });
+
                 props.changeScore(newScore);
             }
 
@@ -116,22 +131,34 @@ class Playfield extends Component {
                 
                 // if next cell down is occupied or outside grid lower bound, set new piece
                 if (floorBelow || pieceBelow) {
+                    
                     // reveal piece
                     newGrid = hidePiece(newGrid, false);
                     // remove any full rows
                     newGrid = clearFullRows(newGrid);
+                    
+                    // check if starting position is occupied
+                    let newPiece = _.cloneDeep(this.state.nextPiece);
+                    const startPosOccupied = newPiece.pos.some(cell => {
+                        return newGrid[cell.y][cell.x];
+                    });
 
-                    const nextPiece = this.randomPiece();
+                    if (startPosOccupied) {
+                        this.gameOver();
+                        return;
+                    }
 
-                    this.setState({ grid: newGrid, activePiece: this.state.nextPiece, nextPiece: nextPiece });
+                    const newNextPiece = this.randomPiece();
 
-                    this.props.changeNextPiece(_.cloneDeep(nextPiece.pos));
+                    this.setState({ grid: newGrid, activePiece: newPiece, nextPiece: newNextPiece });
+
+                    this.props.changeNextPiece(_.cloneDeep(newNextPiece.pos));
                     
                     // prevents multiple timeouts being set
-                    clearTimeout(this.timeout);
-                    this.timeout = (setTimeout(() => {
+                    clearTimeout(this.timeoutID);
+                    this.timeoutID = (setTimeout(() => {
                         movePiece(0, 0, true);
-                    }, 1000));
+                    }, this.state.delay));
                     
                     exitFunction = true;
                     break;
@@ -155,9 +182,9 @@ class Playfield extends Component {
 
             // repeat after a second if move was not triggered by player input
             if (repeat) {
-                this.timeout = setTimeout(() => {
+                this.timeoutID = setTimeout(() => {
                     movePiece(0, 1, repeat);
-                }, 500);
+                }, this.state.delay);
             }
         };
 
@@ -228,13 +255,46 @@ class Playfield extends Component {
             }
         }
 
-    }
+        this.gameOver = () => {
+            console.log('game over');
+            clearTimeout(this.timeoutID);
+            document.removeEventListener('keydown', this.handleKeyDown);
 
-    componentDidMount() {
-        const { props, movePiece, rotatePiece } = this;
+            document.addEventListener('keydown', this.handleRestart)
+        }
 
-        movePiece(0, 0, true);
-        document.addEventListener('keydown', (event) => {
+        this.restartGame = () => {
+            const { props, state, handleKeyDown, handleRestart, movePiece, randomPiece } = this;
+            document.removeEventListener('keydown', handleRestart);
+            
+            // reset state
+            this.setState({ 
+                grid: _.cloneDeep(state.emptyGrid),
+                activePiece: randomPiece(),
+                score: 0,
+                nextPiece: randomPiece(),
+                delay: 500,
+                level: 1,
+                lines: 0
+            }, () => {
+                movePiece(0, 0, true);
+                document.addEventListener('keydown', handleKeyDown);
+                
+                props.changeNextPiece(_.cloneDeep(state.nextPiece.pos));
+                props.changeScore(0);
+            });
+
+        }
+
+        this.handleRestart = (event) => {
+            const { key } = event;
+            if (key === ' ') {
+                this.restartGame();
+            }
+        }
+
+        this.handleKeyDown = (event) => {
+            const { movePiece, rotatePiece } = this;
             const { key } = event;
             let x = 0;
             let y = 0;
@@ -255,7 +315,15 @@ class Playfield extends Component {
                     break;
             }
             movePiece(x, y);
-        });
+        }
+
+    }
+
+    componentDidMount() {
+        const { props, movePiece } = this;
+
+        movePiece(0, 0, true);
+        document.addEventListener('keydown', this.handleKeyDown);
         
         props.changeNextPiece(_.cloneDeep(this.state.nextPiece.pos));
     }

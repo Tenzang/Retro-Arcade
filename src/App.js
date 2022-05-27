@@ -10,7 +10,7 @@ export default class App extends Component {
       <div style={{ textAlign: "center" }}>
        <h1>Arcade Games</h1>
        <Tetris />
-       <SnakeBoard />
+       {/* <SnakeBoard /> */}
       </div>
      );
     }
