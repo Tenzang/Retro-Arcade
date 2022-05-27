@@ -23,17 +23,22 @@ function PieceDisplay( props ) {
     console.table(displayGrid);
 
     return (
-        <div className="grid display">
-            {nextPiece ? displayGrid.map((row, y) => {
-                return(row.map((cell, x) => {
-                    return (
-                        <div
-                            className={`cell ${ cell ? 'occupied' : 'empty' }`}
-                            key={String(x)+ String(y)}
-                        ></div>
-                    )
-                }))
-            }) : "loading..."}
+        <div className="previewPiece">
+            <div className="grid display">
+                {nextPiece ? displayGrid.map((row, y) => {
+                    return(row.map((cell, x) => {
+                        return (
+                            <div
+                                className={`cell ${ cell ? 'occupied' : 'empty' }`}
+                                key={String(x)+ String(y)}
+                            >
+                                <div className="shading">
+                                </div>
+                            </div>
+                        )
+                    }))
+                }) : "loading..."}
+            </div>
         </div>
     );
 }

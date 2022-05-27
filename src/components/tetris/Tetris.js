@@ -24,9 +24,15 @@ class Tetris extends Component {
         return (
             <div>
                 <h3 className='gameTitle'>TETRIS</h3>
-                <ScoreDisplay score={ this.state.score } />
-                <PieceDisplay nextPiece={ this.state.nextPiece } />
-                <Playfield changeScore={ this.changeScore } changeNextPiece={ this.changeNextPiece } />
+                <div className='tetrisContainer'>
+                    <div>
+                        <Playfield changeScore={ this.changeScore } changeNextPiece={ this.changeNextPiece } />
+                    </div>
+                    <div>
+                        <PieceDisplay nextPiece={ this.state.nextPiece } />
+                        <ScoreDisplay score={ this.state.score } />
+                    </div>
+                </div>
             </div>
         );
     }

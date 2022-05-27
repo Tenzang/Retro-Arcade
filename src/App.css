@@ -8,6 +8,24 @@ canvas {
     margin: 0 auto;
 }
 
-.gameContainer {
-    padding: 60px;
+
+
+
+/* -------------- media queries-------------*/
+
+
+@media only screen and (max-width: 600px) {
+
+    .swiper-container {
+        width: 390px;
+        margin: 0 auto;
+    }
+
+    .gameContainer {
+        padding: 10px;
+    }
+
+
+
+
 }

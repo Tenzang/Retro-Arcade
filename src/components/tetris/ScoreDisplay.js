@@ -1,6 +1,6 @@
 const ScoreDisplay = ({ score }) => {
     return (
-        <div>
+        <div className="score">
             Score: { score }
         </div>
     )

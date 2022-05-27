@@ -9,6 +9,7 @@ body {
 
 .Snakeboard {
     text-align: center;
+
 }
 
 .snakeCell {
@@ -30,6 +31,8 @@ body {
     background-color: black;
     display: inline-block;
     position: relative;
+    padding: 10px;
+    border-radius: 7px;
 }
 
 .snakeGame:before {
@@ -294,7 +297,7 @@ body {
     border-right-color: #437512;
 }
 
-/* ------- media queries -------------*/
+/* ------------------------ media queries ------------------------*/
 
 @media only screen and (max-width: 600px) {
     .snakeCell {
@@ -350,7 +353,7 @@ body {
         box-sizing: border-box;
     }
 
-    /* ------------------ controls -----------------*/
+    /* ------------------ MQ - controls -----------------*/
     .controls {
         width: 390px;
         display: flex;
@@ -416,16 +419,13 @@ body {
     }
 
 
-
-
     .message {
         font-family: $font;
         text-transform: uppercase;
         position: absolute;
-        top: 0;
-        padding-top: 180px;
+        padding-top: 120px;
         // animation: blink 2s linear infinite;
-        width: 100vw;
+        width: 300px;
         height: 100vh;
         text-align: center;
         z-index: 1;

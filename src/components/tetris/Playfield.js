@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 
 import startingPieces from './helpers/segments';
-import './styles/tetris.css';
+import './styles/tetris.scss';
 
 class Playfield extends Component { 
     constructor(props) {
@@ -262,17 +262,19 @@ class Playfield extends Component {
 
     render() {
         return (
-            <div className='grid playField'>
-                { this.state.grid.map( (row, y) => {
-                    return(
-                        row.map((cell, x) => {
-                            return (<div
-                                className={`cell ${ cell ? 'occupied' : 'empty' }`}
-                                key={String(x)+ String(y)}
-                            ></div>);
-                        })
-                        );
-                    }) }
+            <div className='tetrisGrid'>
+                <div className='grid playField'>
+                    { this.state.grid.map( (row, y) => {
+                        return(
+                            row.map((cell, x) => {
+                                return (<div
+                                    className={`cell ${ cell ? 'occupied' : 'empty' }`}
+                                    key={String(x)+ String(y)}
+                                > <div className='shading'></div></div>);
+                            })
+                            );
+                        }) }
+                </div>
             </div>
         );
     }
