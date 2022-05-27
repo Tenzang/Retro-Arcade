@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './Snake.scss';
 import Controls from './Controls';
-import _ from 'lodash';
 
 const SnakeBoard = () => {
 
@@ -68,20 +67,26 @@ const SnakeBoard = () => {
     const displayRows = rows.map((row, x) => 
             <div key={String(x)} className="snakeRow">
                 {row.map((e, y) => {
+                    let div;
                     switch(e) {
-                        case 'blank':
-                            return (<div key={String(x) + String(y)} className="snakeCell"></div>)
                         case 'snake':
-                            return (<div key={String(x) + String(y)} className="snake"></div>)
+                            div = <div key={String(x) + String(y)} className="snake"></div>
+                            break;
+                            
                         case 'food':
-                            return (
-                            <div key={String(x) + String(y)}  className="food">
-                                <div className='leaf'></div> 
-                                <div className='apple'></div>
-                            </div>)                       
-                        }
-                    })
-                }
+                            div = (
+                                <div key={String(x) + String(y)}  className="food">
+                                    <div className='leaf'></div> 
+                                    <div className='apple'></div>
+                                </div>
+                            )        
+                            break;
+
+                        default:
+                            div = <div key={String(x) + String(y)} className="snakeCell"></div>
+                    }
+                    return (div);
+                })}
             </div>
     );
 
@@ -113,7 +118,9 @@ const SnakeBoard = () => {
                 break;
             case 'down':
                 newSnake.push({x: (snake[0].x + 1)%height, y: snake[0].y})
-
+                break;
+            default:
+                break;
         }
         
             snake.forEach(cell => {
@@ -170,6 +177,7 @@ const SnakeBoard = () => {
         if (moves.length === 0) {
             return
         } else {
+            console.log('shift:', moves);
             setDirection(moves.shift())
             //console.log(moves);
         }
@@ -196,51 +204,57 @@ const SnakeBoard = () => {
             
     //     }
     // }
-
-    const changeDirectionWithKeys = (e) => {
-        //console.log(e)
-        const { key } = e;
-        switch(key) {
-            case 'ArrowLeft':
-                if (direction !== 'right') { 
-                    setMoves([...moves,'left'])
-                    // moves.push('left');
-                }
-                break;
-            case 'ArrowRight':
-                if (direction !== 'left') { 
-                    setMoves([...moves, 'right'])
-                }
-                break;
-            case 'ArrowUp':
-                if (direction !== 'down') {
-                    setMoves([...moves, 'up'])
-                }
-                break;
-            case 'ArrowDown':
-               if (direction !== 'up') {
-                   setMoves([...moves, 'down'])
-                   // moves.push('down'); 
-                   // console.log('moves after key press', moves)
-                }
-                break;
-            default:
-                break;
-            
-        }
-    }
    
+    const settingMoves = useCallback((moves, direction) => {
+        setMoves([...moves, direction]);
+    }, []);
+
     useEffect(() => {
+        const changeDirectionWithKeys = (e) => {
+            //console.log(e)
+            const { key } = e;
+            let movePressed;
+            switch(key) {
+                case 'ArrowLeft':
+                    if (direction !== 'right') {
+                        movePressed = 'left';
+                        settingMoves(moves, 'left')
+                    }
+                    break;
+                case 'ArrowRight':
+                    if (direction !== 'left') {
+                        movePressed = 'right';
+                        settingMoves(moves, 'right')
+                    }
+                    break;
+                case 'ArrowUp':
+                    if (direction !== 'down') {
+                        movePressed = 'up';
+                        settingMoves(moves, 'up')
+                    }
+                    break;
+                case 'ArrowDown':
+                   if (direction !== 'up') {
+                        movePressed = 'down';
+                       settingMoves(moves, 'down')
+                    }
+                    break;
+                default:
+                    break;
+            }
+            if (movePressed) settingMoves(moves, movePressed)
+        }
+
         document.addEventListener("keydown", changeDirectionWithKeys);
         return () => {
             document.removeEventListener("keydown", changeDirectionWithKeys);
         }
         
-    },[direction])
+    },[direction, moves, settingMoves])
     
 
-    const start = (e) => { //start game with a space bar - remove modal & event listener
-        // console.log('start', e.code)
+    const start = useCallback(e => { //start game with a space bar - remove modal & event listener
+        console.log('start', e.code)
         switch(e.code) {
             case 'Space':
                 setPlay(true)
@@ -248,16 +262,18 @@ const SnakeBoard = () => {
                 setShowInstruction('hidden')
                 document.removeEventListener("keydown", start);
                 break;
+            default:
+                break;
         }
-    }
+    }, [])
 
-    const gameOver = () => {
+    const gameOver = useCallback(() => {
         setMessage('Game Over')
         setVisibility('visible')
         setPlay(false)
         setShowReset('visible')
         setShowInstruction('hidden')
-    }
+    }, [])
 
     const resetGame = () => {
         setSnake(initialSnake);
@@ -274,7 +290,7 @@ const SnakeBoard = () => {
         return () => {
             document.removeEventListener("keydown", start);
         }
-    },[gameOver])
+    },[gameOver, start])
 
     const increaseSpeed = () => {
         let level = snake.length-1

@@ -1,8 +1,8 @@
 import Phaser, { Scene } from 'phaser';
-import React, { Component } from 'react'
-import { ReactDOM } from 'react';
-import logoImg from './assets/logo.png';
-import App from '../../App'
+// import React, { Component } from 'react'
+// import { ReactDOM } from 'react';
+// import logoImg from './assets/logo.png';
+// import App from '../../App'
 
 class MyGame extends Scene {
     constructor ()
@@ -129,7 +129,7 @@ const config = {
 
 
 
-const game = new Phaser.Game(config);
+// const game = new Phaser.Game(config);
 
  // ReactDOM.render(<App />, document.getElementById("phaser"));
 

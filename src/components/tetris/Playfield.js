@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import './styles/tetris.css';
-
 import _ from 'lodash';
 
 import startingPieces from './helpers/segments';
+import './styles/tetris.css';
 
 class Playfield extends Component { 
     constructor(props) {
@@ -74,6 +73,8 @@ class Playfield extends Component {
                 case 4:
                     points = 1200;
                     break;
+                default:
+                    points = 0;
             }
 
             if (linesCleared) {
@@ -250,6 +251,8 @@ class Playfield extends Component {
                 case 'ArrowUp':
                     rotatePiece();
                     return;
+                default:
+                    break;
             }
             movePiece(x, y);
         });
