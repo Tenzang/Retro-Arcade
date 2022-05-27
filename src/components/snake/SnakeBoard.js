@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './Snake.scss';
 import Controls from './Controls';
-import { clear } from '@testing-library/user-event/dist/clear';
+
 
 const SnakeBoard = () => {
 

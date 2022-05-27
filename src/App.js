@@ -1,6 +1,6 @@
 import Tetris from './components/tetris/Tetris';
 import SnakeBoard from './components/snake/SnakeBoard';
-import MyGame from './components/phaser/MyGame'
+// import MyGame from './components/phaser/MyGame'
 import './App.css';
 import React, {Component} from 'react'
 import {Swiper, SwiperSlide} from 'swiper/react';

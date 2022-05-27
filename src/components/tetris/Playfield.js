@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import _, { delay } from 'lodash';
-
 import startingPieces from './helpers/segments';
 import './styles/tetris.scss';
+import _ from 'lodash';
 
 class Playfield extends Component { 
     constructor(props) {
@@ -115,7 +114,8 @@ class Playfield extends Component {
 
             // hide piece from board while checking move to prevent self collision detection
             let newGrid = hidePiece(_.cloneDeep(grid));
-            
+            const checkIfOccupied = (cell) => newGrid[cell.y][cell.x];
+
             for (let i = 0; i < pos.length; i++) {
                 const cell = pos[i];
                 
@@ -142,9 +142,7 @@ class Playfield extends Component {
                     
                     // check if starting position is occupied
                     let newPiece = _.cloneDeep(this.state.nextPiece);
-                    const startPosOccupied = newPiece.pos.some(cell => {
-                        return newGrid[cell.y][cell.x];
-                    });
+                    const startPosOccupied = newPiece.pos.some(checkIfOccupied);
 
                     if (startPosOccupied) {
                         this.gameOver();
