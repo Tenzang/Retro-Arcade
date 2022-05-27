@@ -3,3 +3,11 @@ canvas {
     display: block;
 }
 
+.swiper-container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.gameContainer {
+    padding: 60px;
+}

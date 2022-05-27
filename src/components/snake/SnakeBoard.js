@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './Snake.scss';
 import Controls from './Controls';
+import { clear } from '@testing-library/user-event/dist/clear';
 
 const SnakeBoard = () => {
 
@@ -150,6 +151,13 @@ const SnakeBoard = () => {
     }
     // onsole.log('setting interval')
     useInterval(moveSnake, play ? delay : null);
+
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         moveSnake()
+    //     }, delay)
+    //     return () => clearTimeout(timer);
+    // })
 
     // setInterval doesn't work because when its in a useEffect, its called only once
     function useInterval(callback, delay) {
@@ -303,12 +311,13 @@ const SnakeBoard = () => {
 
     return (
         <div className='Snakeboard'>
-            <h1 className='gameTitle'>Snake</h1>
-            <div className='snakeGame'>{displayRows}</div>
-            <div className='message' style={{visibility: visibility}}>
-                <div className='messageText'>{message}</div>
-                <div style={{visibility: showInstruction}} className='instruction'>{instruction}</div>
-                <button className="reset button-85" style={{visibility: showReset}} onClick={resetGame}>Reset</button>
+            <h3 className='gameTitle'>SNAKE</h3>
+            <div className='snakeGame'>{displayRows}
+                <div className='message' style={{visibility: visibility}}>
+                    <div className='messageText'>{message}</div>
+                    <div style={{visibility: showInstruction}} className='instruction'>{instruction}</div>
+                    <button className="reset button-85" style={{visibility: showReset}} onClick={resetGame}>Reset</button>
+                </div>       
             </div>
             <div className='points'>Points: {snake.length-1}</div>
             <button className="reset button-85" onClick={resetGame}>Reset</button>

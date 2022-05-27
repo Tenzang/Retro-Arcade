@@ -1,6 +1,7 @@
 import Phaser, { Scene } from 'phaser';
 // import React, { Component } from 'react'
-// import { ReactDOM } from 'react';
+//import { ReactDOM } from 'react';
+// import { SwiperSlide } from 'swiper/react';
 // import logoImg from './assets/logo.png';
 // import App from '../../App'
 
@@ -129,8 +130,8 @@ const config = {
 
 
 
-// const game = new Phaser.Game(config);
+// const game = <div id="phaser"> {new Phaser.Game(config)} </div>
 
- // ReactDOM.render(<App />, document.getElementById("phaser"));
+// ReactDOM.render(<SwiperSlide />, document.getElementById("phaser"));
 
 export default MyGame
