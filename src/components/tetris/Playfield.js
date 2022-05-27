@@ -320,15 +320,24 @@ class Playfield extends Component {
             movePiece(x, y);
         }
 
+        this.handleStart = (event) => {
+            document.removeEventListener('keydown', this.handleStart);
+
+            const { key } = event;
+            if (key === ' ') {
+                const { props, movePiece } = this;
+        
+                movePiece(0, 0, true);
+                document.addEventListener('keydown', this.handleKeyDown);
+                
+                props.changeNextPiece(_.cloneDeep(this.state.nextPiece.pos));
+            }
+        }
+
     }
 
     componentDidMount() {
-        const { props, movePiece } = this;
-
-        movePiece(0, 0, true);
-        document.addEventListener('keydown', this.handleKeyDown);
-        
-        props.changeNextPiece(_.cloneDeep(this.state.nextPiece.pos));
+        document.addEventListener('keydown', this.handleStart);
     }
 
     render() {
