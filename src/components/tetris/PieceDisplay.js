@@ -1,4 +1,5 @@
 function PieceDisplay( props ) {
+    console.log(props.nextPiece)
     const displayGrid = Array(4);
     for (let i = 0; i < 4; i++) {
         displayGrid[i] = Array(4).fill(false);

@@ -39,37 +39,37 @@
             orientations: [
                 {
                     pos: [
-                        { x: 5, y: 1 }, // Pivot cell
-                        { x: 4, y: 1 }, 
-                        { x: 6, y: 1 }, 
-                        { x: 5, y: 0 }
+                        { x: 4, y: 1 }, // Pivot cell
+                        { x: 3, y: 1 }, 
+                        { x: 5, y: 1 }, 
+                        { x: 4, y: 0 }
                     ],
                     id: {piece: 't', orientation: 0}
                 },
                 {
                     pos: [
-                        { x: 5, y: 1 }, // Pivot cell
-                        { x: 5, y: 0 }, 
-                        { x: 5, y: 2 }, 
-                        { x: 6, y: 1 }
+                        { x: 4, y: 1 }, // Pivot cell
+                        { x: 4, y: 0 }, 
+                        { x: 4, y: 2 }, 
+                        { x: 5, y: 1 }
                     ],
                     id: {piece: 't', orientation: 1}
                 },
                 {
                     pos: [
-                        { x: 5, y: 1 }, // Pivot cell
-                        { x: 4, y: 1 }, 
-                        { x: 6, y: 1 }, 
-                        { x: 5, y: 2 }
+                        { x: 4, y: 1 }, // Pivot cell
+                        { x: 3, y: 1 }, 
+                        { x: 5, y: 1 }, 
+                        { x: 4, y: 2 }
                     ],
                     id: {piece: 't', orientation: 2}
                 },
                 {
                     pos: [
-                        { x: 5, y: 1 }, // Pivot cell
-                        { x: 5, y: 0 }, 
-                        { x: 5, y: 2 }, 
-                        { x: 4, y: 1 }
+                        { x: 4, y: 1 }, // Pivot cell
+                        { x: 4, y: 0 }, 
+                        { x: 4, y: 2 }, 
+                        { x: 3, y: 1 }
                     ],
                     id: {piece: 't', orientation: 3}
                 }
@@ -79,37 +79,37 @@
             orientations: [
                 {
                     pos: [
-                        { x: 5, y: 1 }, // Pivot cell
-                        { x: 5, y: 0 },
-                        { x: 5, y: 2 },
-                        { x: 6, y: 2 }
+                        { x: 4, y: 1 }, // Pivot cell
+                        { x: 4, y: 0 },
+                        { x: 4, y: 2 },
+                        { x: 5, y: 2 }
                     ],
                     id: {piece: 'l', orientation: 0}
                 },
                 {
                     pos: [
-                        { x: 5, y: 1 }, // Pivot cell
-                        { x: 6, y: 1 },
-                        { x: 4, y: 1 },
-                        { x: 4, y: 2 }
+                        { x: 4, y: 1 }, // Pivot cell
+                        { x: 5, y: 1 },
+                        { x: 3, y: 1 },
+                        { x: 3, y: 2 }
                     ],
                     id: {piece: 'l', orientation: 1}
                 },
                 {
                     pos: [
-                        { x: 5, y: 1 }, // Pivot cell
-                        { x: 5, y: 0 },
-                        { x: 5, y: 2 },
-                        { x: 4, y: 0 }
+                        { x: 4, y: 1 }, // Pivot cell
+                        { x: 4, y: 0 },
+                        { x: 4, y: 2 },
+                        { x: 3, y: 0 }
                     ],
                     id: {piece: 'l', orientation: 2}
                 },
                 {
                     pos: [
-                        { x: 5, y: 1 }, // Pivot cell
-                        { x: 6, y: 1 },
-                        { x: 4, y: 1 },
-                        { x: 6, y: 0 }
+                        { x: 4, y: 1 }, // Pivot cell
+                        { x: 5, y: 1 },
+                        { x: 3, y: 1 },
+                        { x: 5, y: 0 }
                     ],
                     id: {piece: 'l', orientation: 3}
                 }
@@ -119,37 +119,37 @@
             orientations: [
                 {
                     pos: [
-                        { x: 6, y: 1 }, // Pivot cell
-                        { x: 6, y: 0 },
-                        { x: 6, y: 2 },
-                        { x: 5, y: 2 }
+                        { x: 5, y: 1 }, // Pivot cell
+                        { x: 5, y: 0 },
+                        { x: 5, y: 2 },
+                        { x: 4, y: 2 }
                     ],
                     id: {piece: 'lReverse', orientation: 0}
                 },
                 {
                     pos: [
-                        { x: 6, y: 1 }, // Pivot cell
-                        { x: 7, y: 1 },
-                        { x: 5, y: 1 },
-                        { x: 5, y: 0 }
+                        { x: 5, y: 1 }, // Pivot cell
+                        { x: 6, y: 1 },
+                        { x: 4, y: 1 },
+                        { x: 4, y: 0 }
                     ],
                     id: {piece: 'lReverse', orientation: 1}
                 },
                 {
                     pos: [
-                        { x: 6, y: 1 }, // Pivot cell
-                        { x: 6, y: 0 },
-                        { x: 6, y: 2 },
-                        { x: 7, y: 0 }
+                        { x: 5, y: 1 }, // Pivot cell
+                        { x: 5, y: 0 },
+                        { x: 5, y: 2 },
+                        { x: 6, y: 0 }
                     ],
                     id: {piece: 'lReverse', orientation: 2}
                 },
                 {
                     pos: [
-                        { x: 6, y: 1 }, // Pivot cell
-                        { x: 7, y: 1 },
-                        { x: 5, y: 1 },
-                        { x: 7, y: 2 }
+                        { x: 5, y: 1 }, // Pivot cell
+                        { x: 6, y: 1 },
+                        { x: 4, y: 1 },
+                        { x: 6, y: 2 }
                     ],
                     id: {piece: 'lReverse', orientation: 3}
                 }
@@ -159,10 +159,10 @@
             orientations: [
                 {
                     pos: [
-                        { x: 5, y: 1 }, // Pivot cell
-                        { x: 4, y: 1 },
+                        { x: 4, y: 1 }, // Pivot cell
+                        { x: 3, y: 1 },
+                        { x: 4, y: 0 },
                         { x: 5, y: 0 },
-                        { x: 6, y: 0 },
                     ],
                     next: () => { return this.z.orientations[1] },
                     prev: () => { return this.z.orientations[1] },
@@ -170,10 +170,10 @@
                 },
                 {
                     pos: [
-                        { x: 5, y: 1 }, // Pivot cell
-                        { x: 5, y: 0 },
-                        { x: 6, y: 1 },
-                        { x: 6, y: 2 },
+                        { x: 4, y: 1 }, // Pivot cell
+                        { x: 4, y: 0 },
+                        { x: 5, y: 1 },
+                        { x: 5, y: 2 },
                     ],
                     next: () => { return this.z.orientations[0] },
                     prev: () => { return this.z.orientations[0] },
@@ -185,10 +185,10 @@
             orientations: [
                 {
                     pos: [
-                        { x: 5, y: 0 }, // Pivot cell
-                        { x: 4, y: 0 },
+                        { x: 4, y: 0 }, // Pivot cell
+                        { x: 3, y: 0 },
+                        { x: 4, y: 1 },
                         { x: 5, y: 1 },
-                        { x: 6, y: 1 },
                     ],
                     next: () => { return this.zReverse.orientations[1] },
                     prev: () => { return this.zReverse.orientations[1] },
@@ -196,10 +196,10 @@
                 },
                 {
                     pos: [
-                        { x: 5, y: 0 }, // Pivot cell
-                        { x: 5, y: -1 },
-                        { x: 4, y: 0 },
-                        { x: 4, y: 1 },
+                        { x: 4, y: 0 }, // Pivot cell
+                        { x: 4, y: -1 },
+                        { x: 3, y: 0 },
+                        { x: 3, y: 1 },
                     ],
                     next: () => { return this.zReverse.orientations[0] },
                     prev: () => { return this.zReverse.orientations[0] },

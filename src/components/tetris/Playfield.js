@@ -260,8 +260,9 @@ class Playfield extends Component {
             console.log('game over');
             clearTimeout(this.timeoutID);
             document.removeEventListener('keydown', this.handleKeyDown);
+            document.addEventListener('keydown', this.handleRestart);
 
-            document.addEventListener('keydown', this.handleRestart)
+            props.changeInfo('gameOver');
         }
 
         this.restartGame = () => {
@@ -283,6 +284,7 @@ class Playfield extends Component {
                 
                 props.changeNextPiece(_.cloneDeep(state.nextPiece.pos));
                 props.changeScore(0);
+                props.changeInfo('gameOver');
             });
 
         }
@@ -328,6 +330,7 @@ class Playfield extends Component {
                 movePiece(0, 0, true);
                 document.addEventListener('keydown', this.handleKeyDown);
                 
+                props.changeInfo('gameStart');
                 props.changeNextPiece(_.cloneDeep(this.state.nextPiece.pos));
             }
         }

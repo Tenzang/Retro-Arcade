@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
+
 import Playfield from './Playfield';
 import ScoreDisplay from './ScoreDisplay';
 import PieceDisplay from './PieceDisplay';
@@ -35,7 +37,9 @@ class Tetris extends Component {
     }
 
     changeNextPiece = (nextPiece) => {
+        console.log("changing next piece to:", nextPiece);
         this.setState({ nextPiece: nextPiece });
+        console.log('new piece in state:', this.state.nextPiece);
     }
 
     changeLinesCleared = (linesCleared) => {
@@ -46,10 +50,25 @@ class Tetris extends Component {
         this.setState({ level: level });
     }
 
+    changeInfo = (gameStage) => {
+        const newState = _.cloneDeep(this.state);
+        const message = newState.message[gameStage];
+        // flip message.is
+        message.is = !message.is;
+
+        this.setState( newState );
+    }
 
     render() {
         const {score, nextPiece, linesCleared, level, message } = this.state;
-        const { changeScore, changeNextPiece, changeLinesCleared, changeLevel } = this;
+        const { 
+            changeScore, 
+            changeNextPiece,
+            changeLinesCleared,
+            changeLevel,
+            changeInfo 
+        } = this;
+        
         return (
             <div>
                 <h3 className='gameTitle'>TETRIS</h3>
@@ -59,7 +78,8 @@ class Tetris extends Component {
                             changeScore={ changeScore } 
                             changeNextPiece={ changeNextPiece }
                             changeLinesCleared={ changeLinesCleared }
-                            changeLevel={ changeLevel } 
+                            changeLevel={ changeLevel }
+                            changeInfo={ changeInfo }
                         />
                     </div>
                     <div>
