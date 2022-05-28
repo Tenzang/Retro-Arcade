@@ -70,24 +70,26 @@ class Tetris extends Component {
         } = this;
         
         return (
-            <div>
+            <div className='tetrisGame'>
                 <h3 className='gameTitle'>TETRIS</h3>
-                <div className='tetrisContainer'>
-                    <div>
-                        <Playfield 
-                            changeScore={ changeScore } 
-                            changeNextPiece={ changeNextPiece }
-                            changeLinesCleared={ changeLinesCleared }
-                            changeLevel={ changeLevel }
-                            changeInfo={ changeInfo }
-                        />
-                    </div>
-                    <div>
-                        <PieceDisplay nextPiece={ nextPiece } />
-                        <ScoreDisplay score={ score } />
-                        <LinesClearedDisplay linesCleared={ linesCleared } />
-                        <LevelDisplay level={ level } />
-                        <MessageDisplay message={ message } />
+                <div className='gameContainer'>
+                    <div className='tetrisContainer'>
+                        <div>
+                            <Playfield 
+                                changeScore={ changeScore } 
+                                changeNextPiece={ changeNextPiece }
+                                changeLinesCleared={ changeLinesCleared }
+                                changeLevel={ changeLevel }
+                                changeInfo={ changeInfo }
+                            />
+                        </div>
+                        <div>
+                            <PieceDisplay nextPiece={ nextPiece } />
+                            <ScoreDisplay score={ score } />
+                            <LinesClearedDisplay linesCleared={ linesCleared } />
+                            <LevelDisplay level={ level } />
+                            <MessageDisplay message={ message } />
+                        </div>
                     </div>
                 </div>
                 <Controls />

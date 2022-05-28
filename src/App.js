@@ -12,7 +12,7 @@ export default class App extends Component {
     render() {
      return (
       <div style={{ textAlign: "center" }}>
-       <h1>Arcade Games</h1>
+       <h1 className='siteName'>Retro Arcade</h1>
         <div className='swiper-container'>
             <Swiper
                 modules={[Navigation, Pagination]}
@@ -21,9 +21,7 @@ export default class App extends Component {
                 
             >
                 <SwiperSlide>
-                    <div className='gameContainer'>
-                        <Tetris />
-                    </div>
+                    <Tetris />
                 </SwiperSlide>
                 <SwiperSlide>
                     <SnakeBoard />

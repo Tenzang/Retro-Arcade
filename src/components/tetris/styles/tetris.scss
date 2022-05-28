@@ -31,14 +31,14 @@ $grey: #4a4b48;
       );
     //   margin: 0 auto;
     position: absolute;
-    top: -3px;
-    left: -6px;
+    top: -8px;
+    left: -8px;
     background-size: 400%;
     z-index: -1;
     filter: blur(5px);
     -webkit-filter: blur(5px);
-    width: calc(100% + 13px);
-    height: calc(100% + 13px);
+    width: calc(100% + 15px);
+    height: calc(100% + 15px);
     animation: glowing-button-85 20s linear infinite;
     transition: opacity 0.3s ease-in-out;
     border-radius: 10px;
@@ -202,4 +202,27 @@ $grey: #4a4b48;
         margin-left: 40px;
     }
 
+    .messageDisplay .messageText {
+        font-size: 150%;
+    }
+    
+    .messageDisplay .instructions {
+        font-size: 60%;
+        line-height: 200%;
+    }
+    
+    
+    .messageDisplay {
+        position: absolute;
+        right: 0;
+        top: 60%;
+        width: 170px;
+    }
+
+    .gameContainer {
+        padding: 0 10px;
+    }
+
+
+    
 }

@@ -62,6 +62,7 @@ const SnakeBoard = () => {
     const [moves, setMoves] = useState([])
     const [showReset, setShowReset] = useState('hidden')
     const [showInstruction, setShowInstruction] = useState('visible')
+    const [buttonName, setButtonName] = useState('START')
 
     //  console.log('snake', snake.length)
 
@@ -268,6 +269,7 @@ const SnakeBoard = () => {
                 setPlay(true)
                 setVisibility('hidden')
                 setShowInstruction('hidden')
+                setButtonName('RESET')
                 document.removeEventListener("keydown", start);
                 break;
             default:
@@ -291,6 +293,8 @@ const SnakeBoard = () => {
         setMessage('Start')
         setVisibility('hidden')
         setDelay(300)
+        setShowInstruction('hidden')
+        setButtonName('RESET')
     }
 
     useEffect(() => {
@@ -320,7 +324,7 @@ const SnakeBoard = () => {
                 </div>       
             </div>
             <div className='points'>Points: {snake.length-1}</div>
-            <button className="reset button-85" onClick={resetGame}>Reset</button>
+            <button className="reset button-85" onClick={resetGame}>{buttonName}</button>
             <Controls setPlay={setPlay} direction={direction} setDirection={setDirection} />
         </div>
     )
