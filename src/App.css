@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,200;1,300&display=swap');
 
-canvas {
-    margin: 50px auto;
-    display: block;
-}
 
 .swiper-container {
     width: 800px;
@@ -12,6 +8,11 @@ canvas {
 
 }
 
+
+canvas {
+    background-image: url('./components/test/assets/space.png');
+    background-size: cover;
+}
 
 body {
     font-family: 'Press Start 2P', cursive;
@@ -100,5 +101,11 @@ body {
     }
 
 
+    canvas {
+        transform: scale(0.55);
+        position: relative;
+        left: -105px;
+        top: -90px;
+    }
 
 }

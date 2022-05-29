@@ -109,28 +109,28 @@ class MyGame extends Scene {
 
 }
 
-// const config = {
-//     type: Phaser.AUTO,
-//     parent: 'phaser',
-//     width: 800,
-//     height: 600,
-//     physics: {
-//         default: 'arcade',
-//         arcade: {
-//             gravity: {y: 300},
-//             debug: false
-//         }
-//     },
-//     scene: MyGame,
-//     // dom: {
-//     //     createContainer: true
-//     // }
+const config = {
+    type: Phaser.AUTO,
+    parent: 'phaser',
+    width: 800,
+    height: 600,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: {y: 300},
+            debug: false
+        }
+    },
+    scene: MyGame,
+    // dom: {
+    //     createContainer: true
+    // }
     
-// };
+};
 
 
 
-// const game = <div id="phaser"> {new Phaser.Game(config)} </div>
+const game = <div id="phaser"> {new Phaser.Game(config)} </div>
 
 // ReactDOM.render(<SwiperSlide />, document.getElementById("phaser"));
 

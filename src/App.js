@@ -7,7 +7,8 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation'
-
+import SpaceInvaders from './components/test/SpaceInvaders'
+import Space from './components/test/Space';
 
 export default class App extends Component {
     constructor() {
@@ -44,7 +45,7 @@ export default class App extends Component {
                     <SnakeBoard />
                 </SwiperSlide>
                 <SwiperSlide>
-
+                    <Space/>
                 </SwiperSlide>
             </Swiper>
         </div>
