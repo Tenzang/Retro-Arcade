@@ -7,8 +7,25 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation'
+// import Controls from './components/snake/Controls';
 
 export default class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+
+        }
+        
+        // let swiper = new Swiper('.swiper-Container', {
+        //     zoom: {
+        //         minRatio: 0.8,
+        //         maxRatio: 1.2
+        //     }
+        // })
+        //     swiper.on("slideChangeTransitionStart", swiper.zoom.out);
+        //     swiper.on("slideChangeTransitionEnd", swiper.zoom.in)
+    }
+    
     render() {
      return (
       <div style={{ textAlign: "center" }}>
@@ -18,7 +35,7 @@ export default class App extends Component {
                 modules={[Navigation, Pagination]}
                 navigation={true}
                 pagination
-                
+                               
             >
                 <SwiperSlide>
                     <Tetris />
@@ -26,11 +43,12 @@ export default class App extends Component {
                 <SwiperSlide>
                     <SnakeBoard />
                 </SwiperSlide>
-                {/* <SwiperSlide id="phaser">
-                    <MyGame />
-                </SwiperSlide> */}
+                <SwiperSlide id="phaser">
+                    {/* <MyGame /> */}
+                </SwiperSlide>
             </Swiper>
         </div>
+        {/* <Controls /> */}
       </div>
      );
     }

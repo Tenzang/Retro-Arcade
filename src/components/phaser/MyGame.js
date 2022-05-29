@@ -20,8 +20,8 @@ class MyGame extends Scene {
     {
         this.load.image('sky', 'http://labs.phaser.io/assets/skies/sky4.png');
         this.load.image('ground', 'https://phaser.io/content/tutorials/coding-tips-003/platform.png');
-        this.load.image('star', 'https://www.kindpng.com/picc/m/205-2059841_star-cartoon-cute-star-png-transparent-png.png');
-        this.load.image('bomb', 'https://www.freeiconspng.com/uploads/bomb-cartoon-png-clipart-13.png');
+        // this.load.image('star', 'https://www.kindpng.com/picc/m/205-2059841_star-cartoon-cute-star-png-transparent-png.png');
+        // this.load.image('bomb', 'https://www.freeiconspng.com/uploads/bomb-cartoon-png-clipart-13.png');
         this.load.spritesheet('dude', 'https://phaser.io/content/tutorials/making-your-first-phaser-3-game/dude.png',
             { frameWidth: 32, frameHeight: 48 }
         );

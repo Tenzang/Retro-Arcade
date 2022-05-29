@@ -10,8 +10,8 @@ import Controls from '../snake/Controls';
 import MessageDisplay from './MessageDisplay';
 
 class Tetris extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             score: 0,
             nextPiece: '',
@@ -59,14 +59,15 @@ class Tetris extends Component {
         this.setState( newState );
     }
 
+
     render() {
-        const {score, nextPiece, linesCleared, level, message } = this.state;
+        const {score, nextPiece, linesCleared, level, message} = this.state;
         const { 
             changeScore, 
             changeNextPiece,
             changeLinesCleared,
             changeLevel,
-            changeInfo 
+            changeInfo
         } = this;
         
         return (
@@ -92,7 +93,11 @@ class Tetris extends Component {
                         </div>
                     </div>
                 </div>
-                <Controls />
+                <Controls 
+                    buttonName={ message.gameStart.is ? 'START': 'RESET' }
+                    changeInfo={ changeInfo }    
+                    message={ message }
+                />
             </div>
         );
     }

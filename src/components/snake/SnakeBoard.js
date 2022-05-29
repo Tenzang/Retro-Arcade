@@ -10,7 +10,7 @@ const SnakeBoard = () => {
     const height = 20;
     const instruction = '[ Press "Space" to start ]';
     const initialSnake = [{x:0, y:0}];
-    const initialDirection = 'right';
+    const initialDirection = 'ArrowRight';
        
 
     const initialRows = [];
@@ -109,16 +109,16 @@ const SnakeBoard = () => {
         changeDirection();
         const newSnake = [];
         switch(direction) {
-            case 'right':
+            case 'ArrowRight':
                 newSnake.push({x: snake[0].x, y: (snake[0].y + 1)%width}) // this is how many boxes in array --> the % sends it back to the start as it would have no remainders once it gets to the 20 --> gives it the effect that it wraps
                 break;
-            case 'left':
+            case 'ArrowLeft':
                 newSnake.push({x: snake[0].x, y: (snake[0].y - 1 + width)%width})
                 break;
-            case 'up':
+            case 'ArrowUp':
                 newSnake.push({x: (snake[0].x - 1 + height)%height, y: snake[0].y})
                 break;
-            case 'down':
+            case 'ArrowDown':
                 newSnake.push({x: (snake[0].x + 1)%height, y: snake[0].y})
                 break;
             default:
@@ -192,60 +192,39 @@ const SnakeBoard = () => {
         }
     }
  
-    // const changeDirectionWithKeys = (e) => {
-    //     console.log(e)
-    //     const { key } = e;
-    //     switch(key) {
-    //         case 'ArrowLeft':
-    //             (direction === 'right') ? setDirection('right') : setDirection('left')
-    //             break;
-    //         case 'ArrowRight':
-    //             (direction === 'left') ? setDirection('left') : setDirection('right')
-    //             break;
-    //         case 'ArrowUp':
-    //             (direction === 'down') ? setDirection('down') : setDirection('up')
-    //             break;
-    //         case 'ArrowDown':
-    //            (direction === 'up') ? setDirection('up') : setDirection('down')
-    //             break;
-    //         default:
-    //             break;
-            
-    //     }
-    // }
    
     const settingMoves = useCallback((moves, direction) => {
         setMoves([...moves, direction]);
     }, []);
+    
 
     useEffect(() => {
         const changeDirectionWithKeys = (e) => {
-            //console.log(e)
             const { key } = e;
             let movePressed;
             switch(key) {
                 case 'ArrowLeft':
-                    if (direction !== 'right') {
-                        movePressed = 'left';
-                        settingMoves(moves, 'left')
+                    if (direction !== 'ArrowRight') {
+                        movePressed = 'ArrowLeft';
+                        settingMoves(moves, 'ArrowLeft')
                     }
                     break;
                 case 'ArrowRight':
-                    if (direction !== 'left') {
-                        movePressed = 'right';
-                        settingMoves(moves, 'right')
+                    if (direction !== 'ArrowLeft') {
+                        movePressed = 'ArrowRight';
+                        settingMoves(moves, 'ArrowRight')
                     }
                     break;
                 case 'ArrowUp':
-                    if (direction !== 'down') {
-                        movePressed = 'up';
-                        settingMoves(moves, 'up')
+                    if (direction !== 'ArrowDown') {
+                        movePressed = 'ArrowUp';
+                        settingMoves(moves, 'ArrowUp')
                     }
                     break;
                 case 'ArrowDown':
-                   if (direction !== 'up') {
-                        movePressed = 'down';
-                       settingMoves(moves, 'down')
+                   if (direction !== 'ArrowUp') {
+                        movePressed = 'ArrowDown';
+                       settingMoves(moves, 'ArrowDown')
                     }
                     break;
                 default:
@@ -316,16 +295,23 @@ const SnakeBoard = () => {
     return (
         <div className='Snakeboard'>
             <h3 className='gameTitle'>SNAKE</h3>
-            <div className='snakeGame'>{displayRows}
-                <div className='message' style={{visibility: visibility}}>
-                    <div className='messageText'>{message}</div>
-                    <div style={{visibility: showInstruction}} className='instruction'>{instruction}</div>
-                    <button className="reset button-85" style={{visibility: showReset}} onClick={resetGame}>Reset</button>
+            <div className='snakeGame'>{ displayRows }
+                <div className='message' style={{ visibility: visibility }}>
+                    <div className='messageText'>{ message }</div>
+                    <div style={{ visibility: showInstruction }} className='instruction'>{ instruction }</div>
+                    <button className="reset button-85" style={{ visibility: showReset }} onClick={ resetGame }>Reset</button>
                 </div>       
             </div>
-            <div className='points'>Points: {snake.length-1}</div>
-            <button className="reset button-85" onClick={resetGame}>{buttonName}</button>
-            <Controls setPlay={setPlay} direction={direction} setDirection={setDirection} />
+            <div className='points'>Points: { snake.length-1 }</div>
+            <Controls 
+                setPlay={ setPlay } 
+                direction={ direction } 
+                setDirection={ setDirection }
+                resetGame={ resetGame }
+                buttonName={ buttonName }
+                moves={ moves }
+                settingMoves={  settingMoves }
+            />
         </div>
     )
 }
