@@ -30,14 +30,12 @@ const SnakeBoard = () => {
             x: Math.floor(Math.random()*width),
             y: Math.floor(Math.random()*height)
         };
-        console.log('position', position, rows[position.x][position.y])
     
         if (!newRows.some(row => row.includes('blank'))) { // if there are no blank rows = you win!
             setMessage('You win!')
             setVisibility('visible')
             setPlay(false)
         } else if (rows[position.x][position.y] === 'snake' || rows[position.x][position.y] === 'food') {
-            console.log('recalling randomPosition')
             return randomPosition();
         } else {
             foodPosition = position;
@@ -63,8 +61,6 @@ const SnakeBoard = () => {
     const [showReset, setShowReset] = useState('hidden')
     const [showInstruction, setShowInstruction] = useState('visible')
     const [buttonName, setButtonName] = useState('START')
-
-    //  console.log('snake', snake.length)
 
     const displayRows = rows.map((row, x) => 
             <div key={String(x)} className="snakeRow">
@@ -100,12 +96,10 @@ const SnakeBoard = () => {
         })
         newRows[food.x][food.y]='food';
         setRows(newRows);
-        //console.log('rows after setting food', newRows, newRows.some(row => row.includes('food')))
     }
 
 
     const moveSnake = () => {
-        // console.log('snake moving')
         changeDirection();
         const newSnake = [];
         switch(direction) {
@@ -130,14 +124,11 @@ const SnakeBoard = () => {
             })
 
             if (snake[0].x === food.x && snake[0].y === food.y) { // when the snake eats food
-                // console.log('rows after setting food', newRows)
-                console.log('eaten')
                 setFood(randomPosition());
                 increaseSpeed()
             } else if (snake.length > 4) { // 
                 for (let i = 4; i < snake.length; i++) {
                     if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
-                        console.log('collision & game over')
                         gameOver()
                     } 
                 }
@@ -150,15 +141,9 @@ const SnakeBoard = () => {
         setSnake(newSnake);
         displaySnake();
     }
-    // onsole.log('setting interval')
+
     useInterval(moveSnake, play ? delay : null);
 
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         moveSnake()
-    //     }, delay)
-    //     return () => clearTimeout(timer);
-    // })
 
     // setInterval doesn't work because when its in a useEffect, its called only once
     function useInterval(callback, delay) {
@@ -186,9 +171,7 @@ const SnakeBoard = () => {
         if (moves.length === 0) {
             return
         } else {
-            console.log('shift:', moves);
             setDirection(moves.shift())
-            //console.log(moves);
         }
     }
  
@@ -242,7 +225,6 @@ const SnakeBoard = () => {
     
 
     const start = useCallback(e => { //start game with a space bar - remove modal & event listener
-        console.log('start', e.code)
         switch(e.code) {
             case 'Space':
                 setPlay(true)
@@ -287,7 +269,6 @@ const SnakeBoard = () => {
         let level = snake.length-1
         if (level === 10 || level === 20 || level === 25 || level === 30 || level === 40) {
             let speed = delay - 50 // times: 250, 200, 150, 100, 50
-            console.log('speed',speed)
             setDelay(speed)
         }
     }

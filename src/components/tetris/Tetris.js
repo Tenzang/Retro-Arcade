@@ -95,7 +95,7 @@ class Tetris extends Component {
                 </div>
                 <Controls 
                     buttonName={ message.gameStart.is ? 'START': 'RESET' }
-                    changeInfo={ changeInfo }    
+                    changeInfo={ changeInfo }    // need loden's help with this
                     message={ message }
                 />
             </div>

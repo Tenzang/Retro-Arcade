@@ -7,7 +7,7 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation'
-// import Controls from './components/snake/Controls';
+
 
 export default class App extends Component {
     constructor() {
@@ -43,8 +43,8 @@ export default class App extends Component {
                 <SwiperSlide>
                     <SnakeBoard />
                 </SwiperSlide>
-                <SwiperSlide id="phaser">
-                    {/* <MyGame /> */}
+                <SwiperSlide>
+
                 </SwiperSlide>
             </Swiper>
         </div>

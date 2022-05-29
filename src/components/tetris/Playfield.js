@@ -329,7 +329,6 @@ class Playfield extends Component {
         
                 movePiece(0, 0, true);
                 document.addEventListener('keydown', this.handleKeyDown);
-                
                 props.changeInfo('gameStart');
                 props.changeNextPiece(_.cloneDeep(this.state.nextPiece.pos));
             }
