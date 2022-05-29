@@ -16,7 +16,11 @@ canvas {
 
 body {
     font-family: 'Press Start 2P', cursive;
-    background-color: black;
+    background-image: url('../public/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(57, 57, 57, 0.5); 
+    background-blend-mode: multiply;
 }
 
 .siteName {

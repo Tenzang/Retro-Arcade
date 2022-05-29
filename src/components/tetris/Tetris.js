@@ -72,7 +72,7 @@ class Tetris extends Component {
         
         return (
             <div className='tetrisGame'>
-                <h3 className='gameTitle'>TETRIS</h3>
+                <h2 className='gameTitle'>TETRIS</h2>
                 <div className='gameContainer'>
                     <div className='tetrisContainer'>
                         <div>

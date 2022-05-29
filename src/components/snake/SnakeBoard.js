@@ -275,7 +275,7 @@ const SnakeBoard = () => {
 
     return (
         <div className='Snakeboard'>
-            <h3 className='gameTitle'>SNAKE</h3>
+            <h2 className='gameTitle'>SNAKE</h2>
             <div className='snakeGame'>{ displayRows }
                 <div className='message' style={{ visibility: visibility }}>
                     <div className='messageText'>{ message }</div>
