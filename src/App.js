@@ -36,6 +36,7 @@ export default class App extends Component {
                 modules={[Navigation, Pagination]}
                 navigation={true}
                 pagination
+                allowTouchMove={false}
                                
             >
                 <SwiperSlide>

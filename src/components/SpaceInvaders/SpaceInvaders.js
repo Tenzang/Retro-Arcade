@@ -4,6 +4,7 @@ import Ship from './Ship'
 import './Space.scss'
 import Enemy from './Enemy'
 import Controls from "../UI/Controls";
+import { checkCollisionsWith } from "./Helper";
 
 
 const width = 620;
@@ -48,6 +49,8 @@ class Space extends Component {
                 break;
             case 'Enter':
                 keys.enter = value;
+                break;
+            default:
                 break;
         }
         this.pressedKeys = keys;
@@ -98,6 +101,15 @@ class Space extends Component {
                 this.ship.update(keys);
                 this.ship.render(this.state);
                 this.renderEnemy(this.state);
+
+                // check your bullets vs enemy
+                checkCollisionsWith(this.ship.bullets, this.enemies);
+
+                // check player vs invaders
+                checkCollisionsWith([this.ship], this.enemies);
+                for (let i = 0; i < this.enemies.length; i++) {
+                    checkCollisionsWith(this.enemies[i].bullets, [this.ship]); // check enemy bullets vs player
+                }
             }
         }
         requestAnimationFrame(() => { this.update() }); // requestAnimationFrame is smoother than setInterval()
@@ -156,6 +168,7 @@ class Space extends Component {
             this.enemies[index].reverse();
             this.enemies[index].position.y += 20;
             index++;
+            console.log(enemy)
         }
     }
 

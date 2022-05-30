@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+
 import GameObject from "./GameObject";
 import Bullet from './Bullet'
 class Ship extends GameObject {
@@ -23,7 +23,7 @@ class Ship extends GameObject {
 
         if (keys.space && Date.now() - this.lastShot > 200) { // check when "space" is pressed and at least 200ms have passed since last shot fired. 
             const bullet = new Bullet({
-                position: { // bullet shot up from ships position
+                position: { // bullet shoots up from ships position
                     x: this.position.x,
                     y: this.position.y - 5
                 },
