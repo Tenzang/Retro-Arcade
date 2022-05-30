@@ -285,6 +285,7 @@ const SnakeBoard = () => {
             </div>
             <div className='points'>Points: { snake.length-1 }</div>
             <Controls 
+                name={ 'Snake' }
                 setPlay={ setPlay } 
                 direction={ direction } 
                 setDirection={ setDirection }

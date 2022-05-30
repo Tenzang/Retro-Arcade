@@ -10,7 +10,7 @@
 
 
 canvas {
-    background-image: url('./components/test/assets/space.png');
+    background-image: url('./components/SpaceInvaders/assets/space.png');
     background-size: cover;
 }
 
@@ -105,11 +105,11 @@ body {
     }
 
 
-    canvas {
+    /* canvas {
         transform: scale(0.55);
         position: relative;
         left: -105px;
         top: -90px;
-    }
+    } */
 
 }

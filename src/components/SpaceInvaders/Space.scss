@@ -1,0 +1,25 @@
+
+
+.SpaceTitle {
+    color: white;
+    position: relative;
+    top: -400px;
+}
+
+
+/* ------------------------ media queries ------------------------*/
+
+@media only screen and (max-width: 600px) {
+    .SpaceTitle {
+        color: white;
+        position: relative;
+        font-size: 0.5em;
+    }
+
+    canvas {
+        transform: scale(0.55);
+        position: relative;
+        top: -130px;
+        left: -117px;
+    }
+}

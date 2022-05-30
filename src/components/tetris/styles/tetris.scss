@@ -3,6 +3,7 @@
 $darkGreen: #929c84;
 $lightGreen: #a4af93;
 $grey: #4a4b48;
+$cell: 25px;
 
 .tetrisContainer {
     display: flex;
@@ -12,6 +13,7 @@ $grey: #4a4b48;
     position: relative;
     margin: 20px 60px;
     border: 5px solid black;
+    width: 600px;
     border-radius: 8px;
 }
 
@@ -58,8 +60,8 @@ $grey: #4a4b48;
 
 .cell {
     border: 2px solid $darkGreen;
-    width: 30px;
-    height: 30px;
+    width: $cell;
+    height: $cell;
     margin: 0;
     box-sizing: border-box;
     padding: 2px;
@@ -74,14 +76,14 @@ $grey: #4a4b48;
 }
 
 .playField {
-    grid-template-columns: repeat(10, 32px);
+    grid-template-columns: repeat(10, $cell + 2px);
     border: 3px solid black;
     box-sizing: border-box;
     margin: 0 auto;
 }
 
 .display {
-    grid-template-columns: repeat(4, 32px);
+    grid-template-columns: repeat(4, $cell + 2px);
     border: 3px solid black;
 }
 

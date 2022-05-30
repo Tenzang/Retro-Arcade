@@ -7,8 +7,7 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation'
-import SpaceInvaders from './components/test/SpaceInvaders'
-import Space from './components/test/Space';
+import SpaceInvaders from './components/SpaceInvaders/SpaceInvaders'
 
 export default class App extends Component {
     constructor() {
@@ -51,7 +50,7 @@ export default class App extends Component {
                 </SwiperSlide>
                 <SwiperSlide>
                     {({ isActive }) => (
-                        <div>{isActive ? <Space /> : ''}</div>
+                        <div>{isActive ? <SpaceInvaders /> : ''}</div>
                     )}
                 </SwiperSlide>
             </Swiper>

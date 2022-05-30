@@ -1,7 +1,7 @@
 import React from "react";
 import './Snake.scss';
 
-const Controls = ({setPlay, resetGame, buttonName, moves, settingMoves }) => {
+const Controls = ({name, setPlay, resetGame, buttonName, moves, settingMoves }) => {
 
     function handlePlay(e, val) { // play or pause
         e.preventDefault();
@@ -15,6 +15,12 @@ const Controls = ({setPlay, resetGame, buttonName, moves, settingMoves }) => {
         // need to find out which game is active - as this sets moves for two
         settingMoves(moves, val) // snake
     }
+
+    function game(name) { // print name of game
+        console.log('name of game', name)
+    }
+
+    game(name)
 
     return (
         <div>

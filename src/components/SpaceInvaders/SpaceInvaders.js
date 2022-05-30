@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Title from "./Title";
 import Ship from './Ship'
+import './Space.scss'
 
 const width = 620;
 const height = 620;
@@ -24,6 +25,7 @@ class Space extends Component {
         };
 
         this.ship = null;
+        this.invaders = [];
     }
 
     // setting direction to true or false
@@ -114,9 +116,9 @@ class Space extends Component {
 
     render() {
         return (
-            <div>
-                { this.state.gameState === GameState.StartScreen && <Title /> } {/*  only render on initial state plz.. */}
+            <div className="SpaceInvaders">
                 <canvas ref="canvas" width={width} height={height}/>
+                { this.state.gameState === GameState.StartScreen && <Title /> } {/*  only render on initial state plz.. */}
             </div>
         )
     }
