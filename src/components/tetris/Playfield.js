@@ -306,7 +306,6 @@ class Playfield extends Component {
             const { state, timeoutID, handleKeyDown, movePiece, handlePause } = this;
             const { gamePaused } = state;
 
-
             if (gamePaused) {
                 console.log('starting piece');
                 this.timeoutID = (setTimeout(() => {
