@@ -328,6 +328,7 @@ class Playfield extends Component {
 
         this.handleKeyDown = (event) => {
             const { key } = event;
+            console.log('key read by handleKeyDown:', key);
             if (key === ' ') {
                 this.flipPauseState();
             } else {
@@ -368,8 +369,9 @@ class Playfield extends Component {
             }
         }
 
-
+        props.liftHandleKeyDown(this.handleKeyDown);
     }
+
 
     componentDidMount() {
         document.addEventListener('keydown', this.handleStart);
