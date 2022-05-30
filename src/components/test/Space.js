@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Title from "./Title";
 import Ship from './Ship'
 
+const width = 620;
+const height = 620;
+
 const GameState = { // didn't do true false, cause diff stages
     StartScreen: 0,
     Playing: 1, 
@@ -12,6 +15,10 @@ class Space extends Component {
         super();
         this.pressedKeys = { left: 0, right: 0, space: 0, enter: 0 };
         this.state = {
+            screen: {
+                width: width,
+                height: height
+            },
             gameState: GameState.StartScreen,
             context: null
         };
@@ -57,15 +64,15 @@ class Space extends Component {
             radius: 15,
             speed: 2.5,
             position: {
-                x: 300,
-                y: 550
+                x: this.state.screen.width/2,
+                y: this.state.screen.height - 50
             }})
 
         this.ship = ship;
         this.setState({ gameState: GameState.Playing });
         console.log('start and setting state')
     }
-    
+
     // game loop --> run continuously --> for reacting to user input continuously.
     update(currentFrame) {
         const keys = this.pressedKeys;
@@ -74,21 +81,23 @@ class Space extends Component {
             this.start();
         }
 
-        const background = new Image();
-        background.src = "assets/space.png"
-
         const context = this.state.context;
         context.save();
-        context.fillRect(background, 0,0, 600, 600);
+        context.fillRect(0,0, this.state.width, this.state.height);
         context.globalAlpha = 1;
 
+        context.clearRect(0,0, this.state.screen.width, this.state.screen.height) // clearing the screen
+
+
         if ( this.state.gameState === GameState.Playing ) {
+            console.log('clearing this background')
             if( this.ship !== null ){
                 this.ship.update(keys);
                 this.ship.render(this.state);
             }
         }
         requestAnimationFrame(() => { this.update() }); // requestAnimationFrame is smoother than setInterval()
+        // console.log('frame animation')
     }
 
 
@@ -107,7 +116,7 @@ class Space extends Component {
         return (
             <div>
                 { this.state.gameState === GameState.StartScreen && <Title /> } {/*  only render on initial state plz.. */}
-                <canvas ref="canvas" width={600} height={600}/>
+                <canvas ref="canvas" width={width} height={height}/>
             </div>
         )
     }

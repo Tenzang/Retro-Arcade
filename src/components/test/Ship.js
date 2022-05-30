@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-
-class Ship extends Component {
+import GameObject from "./GameObject";
+class Ship extends GameObject {
     constructor(args) {
         super({
             position: args.position,
             onDie: args.onDie,
-            speed: 2.5,
+            speed: 2.5, // velocity - pixels per render
             radius: 15
         })
     }
@@ -21,6 +21,8 @@ class Ship extends Component {
 
     // drawing ship through Canvas
     render(state) {
+
+
         
         // to keep ship within frame
         if (this.position.x > 600) {
@@ -32,8 +34,8 @@ class Ship extends Component {
         const context = state.context;
         context.save();
         context.translate(this.position.x, this.position.y);
-        context.strokeStyle = '#ffffff';
-        context.fillStyle = '#ffffff';
+        context.strokeStyle = 'white';
+        context.fillStyle = 'white';
         context.lineWidth = 2;
         context.beginPath();
         context.moveTo(0, -25);
@@ -45,7 +47,6 @@ class Ship extends Component {
         context.fill();
         context.stroke();
         context.restore();
-        return {}
     }
 }
 

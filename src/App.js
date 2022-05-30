@@ -14,7 +14,8 @@ export default class App extends Component {
     constructor() {
         super();
         this.state = {
-
+            games: ['Tetris', 'Snake', 'Space Invaders'],
+            currentGame: 0
         }
         
         // let swiper = new Swiper('.swiper-Container', {
@@ -39,13 +40,19 @@ export default class App extends Component {
                                
             >
                 <SwiperSlide>
-                    <Tetris />
+                    {({ isActive }) => (
+                        <div>{isActive ? <Tetris/> : ''}</div>
+                    )}
                 </SwiperSlide>
                 <SwiperSlide>
-                    <SnakeBoard />
+                    {({ isActive }) => (
+                        <div>{isActive ? <SnakeBoard/> : ''}</div>
+                    )}
                 </SwiperSlide>
                 <SwiperSlide>
-                    <Space/>
+                    {({ isActive }) => (
+                        <div>{isActive ? <Space /> : ''}</div>
+                    )}
                 </SwiperSlide>
             </Swiper>
         </div>

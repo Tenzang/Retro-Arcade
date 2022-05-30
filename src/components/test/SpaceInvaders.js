@@ -15,8 +15,8 @@ const SpaceInvaders = () => {
         const canvas = canvasRef.current
         const context = canvas.getContext('2d')
 
-        canvas.width = 600;
-        canvas.height = 600;
+        canvas.width = 620;
+        canvas.height = 620;
 
         const background = new Image();
         background.src = "assets/space.png"
