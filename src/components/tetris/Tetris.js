@@ -32,7 +32,8 @@ class Tetris extends Component {
                     is: false,
                     message: 'Paused',
                     instruction: '[Press "Space" to Continue ]'
-                }
+                },
+                handleKeyDown: null
             }
         };
     };
@@ -64,15 +65,19 @@ class Tetris extends Component {
         this.setState( newState );
     }
 
+    liftHandleKeyDown = (handleKeyDown) => {
+        this.setState({ handleKeyDown: handleKeyDown });
+    }
 
     render() {
-        const {score, nextPiece, linesCleared, level, message} = this.state;
+        const { score, nextPiece, linesCleared, level, message, handleKeyDown } = this.state;
         const { 
             changeScore, 
             changeNextPiece,
             changeLinesCleared,
             changeLevel,
-            changeInfo
+            changeInfo,
+            liftHandleKeyDown
         } = this;
         
         return (
@@ -87,6 +92,7 @@ class Tetris extends Component {
                                 changeLinesCleared={ changeLinesCleared }
                                 changeLevel={ changeLevel }
                                 changeInfo={ changeInfo }
+                                liftHandleKeyDown={ liftHandleKeyDown }
                             />
                         </div>
                         <div>
@@ -103,6 +109,7 @@ class Tetris extends Component {
                     buttonName={ message.gameStart.is ? 'START': 'RESET' }
                     changeInfo={ changeInfo }    // need loden's help with this
                     message={ message }
+                    handleKeyDown={ handleKeyDown }
                 />
             </div>
         );
