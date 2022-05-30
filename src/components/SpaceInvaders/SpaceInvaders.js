@@ -3,6 +3,8 @@ import Title from "./Title";
 import Ship from './Ship'
 import './Space.scss'
 import Enemy from './Enemy'
+import Controls from "../UI/Controls";
+
 
 const width = 620;
 const height = 620;
@@ -72,15 +74,14 @@ class Space extends Component {
             }})
 
         this.ship = ship;
+        this.createEnemy(24);
         this.setState({ gameState: GameState.Playing });
-        console.log('start and setting state')
     }
 
     // game loop --> run continuously --> for reacting to user input continuously.
     update(currentFrame) {
         const keys = this.pressedKeys;
         if ( this.state.gameState === GameState.StartScreen && keys.enter ) {
-            console.log('starting game')
             this.start();
         }
 
@@ -93,16 +94,17 @@ class Space extends Component {
 
 
         if ( this.state.gameState === GameState.Playing ) {
-            console.log('clearing this background')
             if( this.ship !== null ){
                 this.ship.update(keys);
                 this.ship.render(this.state);
+                this.renderEnemy(this.state);
             }
         }
         requestAnimationFrame(() => { this.update() }); // requestAnimationFrame is smoother than setInterval()
         // console.log('frame animation')
     }
 
+    // create enemy and place on the right of previous, otherwise new row
     createEnemy(count) {
         const newPosition = { x: 100, y: 20};
         let swapStartX = true;
@@ -111,15 +113,15 @@ class Space extends Component {
             const enemy = new Enemy({
                 position: {x: newPosition.x, y: newPosition.y},
                 speed: 1,
-                radius: 50
+                radius: 40
             });
 
-            newPosition.x += enemy.radius + 20;
+            newPosition.x += enemy.radius + 15;
 
-            if (newPosition.x + enemy.radius + 50 >= this.state.screen.width) {
+            if (newPosition.x + enemy.radius + 40 >= this.state.screen.width) {
                 newPosition.x = swapStartX ? 110 : 100;
                 swapStartX = !swapStartX;
-                newPosition.y += enemy.radius + 20;
+                newPosition.y += enemy.radius + 15;
             }
 
             this.enemies.push(enemy);
@@ -130,9 +132,31 @@ class Space extends Component {
         let index = 0;
         let reverse = false;
 
-        // for (let enemy of this.enemies) {
-        //     if (enemy.delete)
-        // }
+        for (let enemy of this.enemies) {
+            if (enemy.delete) {
+                this.enemies.splice(index, 1)
+            } else if (enemy.position.x + enemy.radius >= this.state.screen.width || enemy.position.x - enemy.radius <= 0) {
+                reverse = true;
+            } else {
+                this.enemies[index].update();
+                this.enemies[index].render(state);
+            }
+            index++;
+        }
+
+        if (reverse) {
+            this.reverseEnemies();
+        }
+    }
+
+    // when enemy reaches boundary, go the opposite direction and move closer
+    reverseEnemies() {
+        let index = 0;
+        for (let enemy of this.enemies) {
+            this.enemies[index].reverse();
+            this.enemies[index].position.y += 20;
+            index++;
+        }
     }
 
 
@@ -152,6 +176,7 @@ class Space extends Component {
             <div className="SpaceInvaders">
                 <canvas ref="canvas" width={width} height={height}/>
                 { this.state.gameState === GameState.StartScreen && <Title /> } {/*  only render on initial state plz.. */}
+                <Controls handleKeys={ this.handleKeys }/>
             </div>
         )
     }

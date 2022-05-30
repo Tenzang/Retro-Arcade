@@ -1,5 +1,5 @@
 import GameObject from "./GameObject";
-
+import enemy from './assets/enemy.png'
 
 export const Direction = {
     Left: 0,
@@ -13,7 +13,7 @@ class Enemy extends GameObject {
             position: args.position, 
             onDie: args.onDie,
             speed: 1,
-            radius: 50
+            radius: 40
         });
         this.direction = Direction.Right;
     }
@@ -41,27 +41,28 @@ class Enemy extends GameObject {
         context.save();
         context.translate(this.position.x, this.position.y)
 
-        this.image = new Image();
-        this.image.src = 'assets/enemy.png';
-        context.drawImage(this.image, 0,0)
 
-        // context.strokeStyle = '#F00';
-	    // context.fillStyle = '#F00';
-	    // context.lineWidth = 2;
-	    // context.beginPath();
-	    // context.moveTo(-5, 25);
-		// context.arc(0, 25, 5, 0, Math.PI);
-	    // context.lineTo(5, 25);
-	    // context.lineTo(5, 0);
-	    // context.lineTo(15, 0);
-	    // context.lineTo(15, -15);
-	    // context.lineTo(-15, -15);
-	    // context.lineTo(-15, 0);
-	    // context.lineTo(-5, 0);
-	    // context.closePath();
-	    // context.fill();
-	    // context.stroke();
-	    // context.restore();
+        // this.image = new Image();
+        // this.image.src = enemy;
+
+        // context.drawImage(this.image, this.position.x, this.position.y, 30, 20)
+
+        context.strokeStyle = 'blue';
+	    context.fillStyle = 'blue';
+	    context.lineWidth = 2;
+	    context.beginPath();
+	    context.moveTo(-5, 20);
+	    context.lineTo(5, 20);
+	    context.lineTo(5, 0);
+	    context.lineTo(15, 0);
+	    context.lineTo(15, -15);
+	    context.lineTo(-15, -15);
+	    context.lineTo(-15, 0);
+	    context.lineTo(-5, 0);
+	    context.closePath();
+	    context.fill();
+	    context.stroke();
+	    context.restore();
     }
 }
 

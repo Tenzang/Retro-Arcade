@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import GameObject from "./GameObject";
+import Bullet from './Bullet'
 class Ship extends GameObject {
     constructor(args) {
         super({
@@ -7,7 +8,9 @@ class Ship extends GameObject {
             onDie: args.onDie,
             speed: 2.5, // velocity - pixels per render
             radius: 15
-        })
+        });
+        this.bullets = [];
+        this.lastShot = 0; // controls the number of shots fired in a given time period
     }
 
     // position of ship - adjust along x plane
@@ -17,12 +20,36 @@ class Ship extends GameObject {
         } else if (keys.left) {
             this.position.x -= this.speed;
         }
+
+        if (keys.space && Date.now() - this.lastShot > 200) { // check when "space" is pressed and at least 200ms have passed since last shot fired. 
+            const bullet = new Bullet({
+                position: { // bullet shot up from ships position
+                    x: this.position.x,
+                    y: this.position.y - 5
+                },
+                direction: "up"
+            });
+
+            this.bullets.push(bullet);
+            this.lastShot = Date.now();
+        }
+    }
+
+    renderBullets(state) {
+        let index = 0;
+        for (let bullet of this.bullets) {
+            if ( bullet.delete ) {
+                this.bullets.splice(index, 1);
+            } else {
+                this.bullets[index].update();
+                this.bullets[index].render(state);
+            }
+            index++;
+        }
     }
 
     // drawing ship through Canvas
     render(state) {
-
-
         
         // to keep ship within frame
         if (this.position.x > 600) {
@@ -30,6 +57,8 @@ class Ship extends GameObject {
         } else if (this.position.x < 0 ) {
             this.position.x = 600;
         }
+
+        this.renderBullets(state)
 
         const context = state.context;
         context.save();
