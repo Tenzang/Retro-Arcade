@@ -7,8 +7,26 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation'
+import SpaceInvaders from './components/SpaceInvaders/SpaceInvaders'
 
 export default class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            games: ['Tetris', 'Snake', 'Space Invaders'],
+            currentGame: 0
+        }
+        
+        // let swiper = new Swiper('.swiper-Container', {
+        //     zoom: {
+        //         minRatio: 0.8,
+        //         maxRatio: 1.2
+        //     }
+        // })
+        //     swiper.on("slideChangeTransitionStart", swiper.zoom.out);
+        //     swiper.on("slideChangeTransitionEnd", swiper.zoom.in)
+    }
+    
     render() {
      return (
       <div style={{ textAlign: "center" }}>
@@ -18,19 +36,26 @@ export default class App extends Component {
                 modules={[Navigation, Pagination]}
                 navigation={true}
                 pagination
-                
+                               
             >
                 <SwiperSlide>
-                    <Tetris />
+                    {({ isActive }) => (
+                        <div>{isActive ? <Tetris/> : ''}</div>
+                    )}
                 </SwiperSlide>
                 <SwiperSlide>
-                    <SnakeBoard />
+                    {({ isActive }) => (
+                        <div>{isActive ? <SnakeBoard/> : ''}</div>
+                    )}
                 </SwiperSlide>
-                {/* <SwiperSlide id="phaser">
-                    <MyGame />
-                </SwiperSlide> */}
+                <SwiperSlide>
+                    {({ isActive }) => (
+                        <div>{isActive ? <SpaceInvaders /> : ''}</div>
+                    )}
+                </SwiperSlide>
             </Swiper>
         </div>
+        {/* <Controls /> */}
       </div>
      );
     }

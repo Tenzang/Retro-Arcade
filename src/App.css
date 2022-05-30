@@ -1,20 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,200;1,300&display=swap');
 
-canvas {
-    margin: 50px auto;
-    display: block;
-}
 
 .swiper-container {
     width: 800px;
     margin: 0 auto;
+
 }
 
 
+canvas {
+    background-image: url('./components/SpaceInvaders/assets/space.png');
+    background-size: cover;
+}
+
 body {
     font-family: 'Press Start 2P', cursive;
-    background-color: black;
+    background-image: url('../public/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(57, 57, 57, 0.5); 
+    background-blend-mode: multiply;
 }
 
 .siteName {
@@ -81,6 +87,8 @@ body {
 }
 
 
+
+
 /* -------------- media queries-------------*/
 
 
@@ -97,5 +105,11 @@ body {
     }
 
 
+    /* canvas {
+        transform: scale(0.55);
+        position: relative;
+        left: -105px;
+        top: -90px;
+    } */
 
 }

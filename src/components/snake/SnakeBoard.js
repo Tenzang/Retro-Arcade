@@ -10,7 +10,7 @@ const SnakeBoard = () => {
     const height = 20;
     const instruction = '[ Press "Space" to start ]';
     const initialSnake = [{x:0, y:0}];
-    const initialDirection = 'right';
+    const initialDirection = 'ArrowRight';
        
 
     const initialRows = [];
@@ -30,14 +30,12 @@ const SnakeBoard = () => {
             x: Math.floor(Math.random()*width),
             y: Math.floor(Math.random()*height)
         };
-        console.log('position', position, rows[position.x][position.y])
     
         if (!newRows.some(row => row.includes('blank'))) { // if there are no blank rows = you win!
             setMessage('You win!')
             setVisibility('visible')
             setPlay(false)
         } else if (rows[position.x][position.y] === 'snake' || rows[position.x][position.y] === 'food') {
-            console.log('recalling randomPosition')
             return randomPosition();
         } else {
             foodPosition = position;
@@ -63,8 +61,6 @@ const SnakeBoard = () => {
     const [showReset, setShowReset] = useState('hidden')
     const [showInstruction, setShowInstruction] = useState('visible')
     const [buttonName, setButtonName] = useState('START')
-
-    //  console.log('snake', snake.length)
 
     const displayRows = rows.map((row, x) => 
             <div key={String(x)} className="snakeRow">
@@ -100,25 +96,23 @@ const SnakeBoard = () => {
         })
         newRows[food.x][food.y]='food';
         setRows(newRows);
-        //console.log('rows after setting food', newRows, newRows.some(row => row.includes('food')))
     }
 
 
     const moveSnake = () => {
-        // console.log('snake moving')
         changeDirection();
         const newSnake = [];
         switch(direction) {
-            case 'right':
+            case 'ArrowRight':
                 newSnake.push({x: snake[0].x, y: (snake[0].y + 1)%width}) // this is how many boxes in array --> the % sends it back to the start as it would have no remainders once it gets to the 20 --> gives it the effect that it wraps
                 break;
-            case 'left':
+            case 'ArrowLeft':
                 newSnake.push({x: snake[0].x, y: (snake[0].y - 1 + width)%width})
                 break;
-            case 'up':
+            case 'ArrowUp':
                 newSnake.push({x: (snake[0].x - 1 + height)%height, y: snake[0].y})
                 break;
-            case 'down':
+            case 'ArrowDown':
                 newSnake.push({x: (snake[0].x + 1)%height, y: snake[0].y})
                 break;
             default:
@@ -130,14 +124,11 @@ const SnakeBoard = () => {
             })
 
             if (snake[0].x === food.x && snake[0].y === food.y) { // when the snake eats food
-                // console.log('rows after setting food', newRows)
-                console.log('eaten')
                 setFood(randomPosition());
                 increaseSpeed()
             } else if (snake.length > 4) { // 
                 for (let i = 4; i < snake.length; i++) {
                     if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
-                        console.log('collision & game over')
                         gameOver()
                     } 
                 }
@@ -150,15 +141,9 @@ const SnakeBoard = () => {
         setSnake(newSnake);
         displaySnake();
     }
-    // onsole.log('setting interval')
+
     useInterval(moveSnake, play ? delay : null);
 
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         moveSnake()
-    //     }, delay)
-    //     return () => clearTimeout(timer);
-    // })
 
     // setInterval doesn't work because when its in a useEffect, its called only once
     function useInterval(callback, delay) {
@@ -186,66 +171,43 @@ const SnakeBoard = () => {
         if (moves.length === 0) {
             return
         } else {
-            console.log('shift:', moves);
             setDirection(moves.shift())
-            //console.log(moves);
         }
     }
  
-    // const changeDirectionWithKeys = (e) => {
-    //     console.log(e)
-    //     const { key } = e;
-    //     switch(key) {
-    //         case 'ArrowLeft':
-    //             (direction === 'right') ? setDirection('right') : setDirection('left')
-    //             break;
-    //         case 'ArrowRight':
-    //             (direction === 'left') ? setDirection('left') : setDirection('right')
-    //             break;
-    //         case 'ArrowUp':
-    //             (direction === 'down') ? setDirection('down') : setDirection('up')
-    //             break;
-    //         case 'ArrowDown':
-    //            (direction === 'up') ? setDirection('up') : setDirection('down')
-    //             break;
-    //         default:
-    //             break;
-            
-    //     }
-    // }
    
     const settingMoves = useCallback((moves, direction) => {
         setMoves([...moves, direction]);
     }, []);
+    
 
     useEffect(() => {
         const changeDirectionWithKeys = (e) => {
-            //console.log(e)
             const { key } = e;
             let movePressed;
             switch(key) {
                 case 'ArrowLeft':
-                    if (direction !== 'right') {
-                        movePressed = 'left';
-                        settingMoves(moves, 'left')
+                    if (direction !== 'ArrowRight') {
+                        movePressed = 'ArrowLeft';
+                        settingMoves(moves, 'ArrowLeft')
                     }
                     break;
                 case 'ArrowRight':
-                    if (direction !== 'left') {
-                        movePressed = 'right';
-                        settingMoves(moves, 'right')
+                    if (direction !== 'ArrowLeft') {
+                        movePressed = 'ArrowRight';
+                        settingMoves(moves, 'ArrowRight')
                     }
                     break;
                 case 'ArrowUp':
-                    if (direction !== 'down') {
-                        movePressed = 'up';
-                        settingMoves(moves, 'up')
+                    if (direction !== 'ArrowDown') {
+                        movePressed = 'ArrowUp';
+                        settingMoves(moves, 'ArrowUp')
                     }
                     break;
                 case 'ArrowDown':
-                   if (direction !== 'up') {
-                        movePressed = 'down';
-                       settingMoves(moves, 'down')
+                   if (direction !== 'ArrowUp') {
+                        movePressed = 'ArrowDown';
+                       settingMoves(moves, 'ArrowDown')
                     }
                     break;
                 default:
@@ -263,7 +225,6 @@ const SnakeBoard = () => {
     
 
     const start = useCallback(e => { //start game with a space bar - remove modal & event listener
-        console.log('start', e.code)
         switch(e.code) {
             case 'Space':
                 setPlay(true)
@@ -308,24 +269,31 @@ const SnakeBoard = () => {
         let level = snake.length-1
         if (level === 10 || level === 20 || level === 25 || level === 30 || level === 40) {
             let speed = delay - 50 // times: 250, 200, 150, 100, 50
-            console.log('speed',speed)
             setDelay(speed)
         }
     }
 
     return (
         <div className='Snakeboard'>
-            <h3 className='gameTitle'>SNAKE</h3>
-            <div className='snakeGame'>{displayRows}
-                <div className='message' style={{visibility: visibility}}>
-                    <div className='messageText'>{message}</div>
-                    <div style={{visibility: showInstruction}} className='instruction'>{instruction}</div>
-                    <button className="reset button-85" style={{visibility: showReset}} onClick={resetGame}>Reset</button>
+            <h2 className='gameTitle'>SNAKE</h2>
+            <div className='snakeGame'>{ displayRows }
+                <div className='message' style={{ visibility: visibility }}>
+                    <div className='messageText'>{ message }</div>
+                    <div style={{ visibility: showInstruction }} className='instruction'>{ instruction }</div>
+                    <button className="reset button-85" style={{ visibility: showReset }} onClick={ resetGame }>Reset</button>
                 </div>       
             </div>
-            <div className='points'>Points: {snake.length-1}</div>
-            <button className="reset button-85" onClick={resetGame}>{buttonName}</button>
-            <Controls setPlay={setPlay} direction={direction} setDirection={setDirection} />
+            <div className='points'>Points: { snake.length-1 }</div>
+            <Controls 
+                name={ 'Snake' }
+                setPlay={ setPlay } 
+                direction={ direction } 
+                setDirection={ setDirection }
+                resetGame={ resetGame }
+                buttonName={ buttonName }
+                moves={ moves }
+                settingMoves={  settingMoves }
+            />
         </div>
     )
 }

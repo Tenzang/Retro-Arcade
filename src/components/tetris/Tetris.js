@@ -10,8 +10,8 @@ import Controls from '../UI/Controls';
 import MessageDisplay from './MessageDisplay';
 
 class Tetris extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             score: 0,
             nextPiece: '',
@@ -64,19 +64,20 @@ class Tetris extends Component {
         this.setState( newState );
     }
 
+
     render() {
-        const {score, nextPiece, linesCleared, level, message } = this.state;
+        const {score, nextPiece, linesCleared, level, message} = this.state;
         const { 
             changeScore, 
             changeNextPiece,
             changeLinesCleared,
             changeLevel,
-            changeInfo 
+            changeInfo
         } = this;
         
         return (
             <div className='tetrisGame'>
-                <h3 className='gameTitle'>TETRIS</h3>
+                <h2 className='gameTitle'>TETRIS</h2>
                 <div className='gameContainer'>
                     <div className='tetrisContainer'>
                         <div>
@@ -97,7 +98,12 @@ class Tetris extends Component {
                         </div>
                     </div>
                 </div>
-                <Controls />
+                <Controls
+                    name={"Tetris"} 
+                    buttonName={ message.gameStart.is ? 'START': 'RESET' }
+                    changeInfo={ changeInfo }    // need loden's help with this
+                    message={ message }
+                />
             </div>
         );
     }

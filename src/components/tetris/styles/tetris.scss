@@ -3,6 +3,7 @@
 $darkGreen: #929c84;
 $lightGreen: #a4af93;
 $grey: #4a4b48;
+$cell: 25px;
 
 .tetrisContainer {
     display: flex;
@@ -12,6 +13,7 @@ $grey: #4a4b48;
     position: relative;
     margin: 20px 60px;
     border: 5px solid black;
+    width: 600px;
     border-radius: 8px;
 }
 
@@ -58,8 +60,8 @@ $grey: #4a4b48;
 
 .cell {
     border: 2px solid $darkGreen;
-    width: 30px;
-    height: 30px;
+    width: $cell;
+    height: $cell;
     margin: 0;
     box-sizing: border-box;
     padding: 2px;
@@ -74,14 +76,14 @@ $grey: #4a4b48;
 }
 
 .playField {
-    grid-template-columns: repeat(10, 32px);
+    grid-template-columns: repeat(10, $cell + 2px);
     border: 3px solid black;
     box-sizing: border-box;
     margin: 0 auto;
 }
 
 .display {
-    grid-template-columns: repeat(4, 32px);
+    grid-template-columns: repeat(4, $cell + 2px);
     border: 3px solid black;
 }
 
@@ -140,15 +142,16 @@ $grey: #4a4b48;
 
     $size: 15px;
 
-    h3 {
-        margin-bottom: 10px;
+    h2 {
+        margin-bottom: 0px;
     }
 
     .tetrisContainer {
         display: grid;
         grid-template-columns: 55% 45%;
-        margin: 20px 0;
+        margin: 20px 10px;
         border: 3px solid black;
+        padding: 20px;
     }
 
     .cell {
@@ -199,7 +202,7 @@ $grey: #4a4b48;
     .info-display {
         font-size: 70%;
         margin: 20px 20px;
-        margin-left: 40px;
+        // margin-left: 30px;
     }
 
     .messageDisplay .messageText {
@@ -214,7 +217,7 @@ $grey: #4a4b48;
     
     .messageDisplay {
         position: absolute;
-        right: 0;
+        right: -5px;
         top: 60%;
         width: 170px;
     }
