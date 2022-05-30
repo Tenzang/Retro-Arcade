@@ -7,7 +7,7 @@ export const Direction = {
 };
 
 
-class Invaders extends GameObject {
+class Enemy extends GameObject {
     constructor(args) {
         super({
             position: args.position, 
@@ -40,8 +40,29 @@ class Invaders extends GameObject {
         const context = state.context;
         context.save();
         context.translate(this.position.x, this.position.y)
+
         this.image = new Image();
         this.image.src = 'assets/enemy.png';
         context.drawImage(this.image, 0,0)
+
+        // context.strokeStyle = '#F00';
+	    // context.fillStyle = '#F00';
+	    // context.lineWidth = 2;
+	    // context.beginPath();
+	    // context.moveTo(-5, 25);
+		// context.arc(0, 25, 5, 0, Math.PI);
+	    // context.lineTo(5, 25);
+	    // context.lineTo(5, 0);
+	    // context.lineTo(15, 0);
+	    // context.lineTo(15, -15);
+	    // context.lineTo(-15, -15);
+	    // context.lineTo(-15, 0);
+	    // context.lineTo(-5, 0);
+	    // context.closePath();
+	    // context.fill();
+	    // context.stroke();
+	    // context.restore();
     }
 }
+
+export default Enemy;

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Title from "./Title";
 import Ship from './Ship'
 import './Space.scss'
+import Enemy from './Enemy'
 
 const width = 620;
 const height = 620;
@@ -25,7 +26,7 @@ class Space extends Component {
         };
 
         this.ship = null;
-        this.invaders = [];
+        this.enemies = [];
     }
 
     // setting direction to true or false
@@ -100,6 +101,38 @@ class Space extends Component {
         }
         requestAnimationFrame(() => { this.update() }); // requestAnimationFrame is smoother than setInterval()
         // console.log('frame animation')
+    }
+
+    createEnemy(count) {
+        const newPosition = { x: 100, y: 20};
+        let swapStartX = true;
+
+        for (let i = 0; i < count; i++ ) {
+            const enemy = new Enemy({
+                position: {x: newPosition.x, y: newPosition.y},
+                speed: 1,
+                radius: 50
+            });
+
+            newPosition.x += enemy.radius + 20;
+
+            if (newPosition.x + enemy.radius + 50 >= this.state.screen.width) {
+                newPosition.x = swapStartX ? 110 : 100;
+                swapStartX = !swapStartX;
+                newPosition.y += enemy.radius + 20;
+            }
+
+            this.enemies.push(enemy);
+        }
+    }
+
+    renderEnemy(state) {
+        let index = 0;
+        let reverse = false;
+
+        // for (let enemy of this.enemies) {
+        //     if (enemy.delete)
+        // }
     }
 
 
