@@ -1,23 +1,18 @@
 
 function MessageDisplay( { message} ) {
-    const { gameOver, gameStart } = message;
+    const { gameOver, gameStart, gamePaused } = message;
+    const gameStates  = [gameOver, gameStart, gamePaused];
 
-    if (gameOver.is) {
+    const currentState = gameStates.find(state => state.is );
+
+    if (currentState) {
         return (
             <div className="messageDisplay">
-                <h3 className="messageText">{gameOver.message}</h3>
-                <p className="instructions">{gameOver.instruction}</p>
+                <h3 className="messageText">{ currentState.message }</h3>
+                <p className="instructions">{ currentState.instruction }</p>
             </div>
-        )
-    } else if (gameStart.is) {
-        return (
-            <div className="messageDisplay">
-                <h3 className="messageText">{gameStart.message}</h3>
-                <p className="instructions">{gameStart.instruction}</p>
-            </div>
-        )
+        );
     }
-
 }
 
 

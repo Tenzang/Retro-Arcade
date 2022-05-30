@@ -27,7 +27,12 @@ class Tetris extends Component {
                     is: false,
                     message: 'Game Over',
                     instruction: '[ Press "Space" to Restart ]'    
-                } 
+                },
+                gamePaused: {
+                    is: false,
+                    message: 'Paused',
+                    instruction: '[Press "Space" to Continue ]'
+                }
             }
         };
     };

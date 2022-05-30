@@ -39,7 +39,8 @@ class Playfield extends Component {
             nextPiece: this.randomPiece(),
             delay: 500,
             lines: 0,
-            level: 1
+            level: 1,
+            gamePaused: false
         }
 
         // removes or adds piece to the grid
@@ -257,7 +258,6 @@ class Playfield extends Component {
         }
 
         this.gameOver = () => {
-            console.log('game over');
             clearTimeout(this.timeoutID);
             document.removeEventListener('keydown', this.handleKeyDown);
             document.addEventListener('keydown', this.handleRestart);
@@ -296,35 +296,70 @@ class Playfield extends Component {
             }
         }
 
-        this.handleKeyDown = (event) => {
-            const { movePiece, rotatePiece } = this;
+        this.handlePause = (event) => {
             const { key } = event;
-            let x = 0;
-            let y = 0;
-            switch (key) {
-                case 'ArrowLeft':
-                    x--;
-                    break;
-                case 'ArrowRight':
-                    x++;
-                    break;
-                case 'ArrowDown':
-                    y++;
-                    break;
-                case 'ArrowUp':
-                    rotatePiece();
-                    return;
-                default:
-                    break;
+
+            if (key === ' ') this.flipPauseState();
+        }
+
+        this.flipPauseState = () => {
+            const { state, timeoutID, handleKeyDown, movePiece, handlePause } = this;
+            const { gamePaused } = state;
+
+
+            if (gamePaused) {
+                console.log('starting piece');
+                this.timeoutID = (setTimeout(() => {
+                    movePiece(0, 1, true);
+                }, this.state.delay));
+                
+                document.removeEventListener('keydown', handlePause);
+                document.addEventListener('keydown', handleKeyDown);
+            } else {
+                console.log('stopping piece');
+                clearTimeout(timeoutID);
+                
+                document.removeEventListener('keydown', handleKeyDown);
+                document.addEventListener('keydown', handlePause);
             }
-            movePiece(x, y);
+
+            props.changeInfo('gamePaused');
+            this.setState( { gamePaused: !gamePaused });
+        }
+
+        this.handleKeyDown = (event) => {
+            const { key } = event;
+            if (key === ' ') {
+                this.flipPauseState();
+            } else {
+                const { movePiece, rotatePiece } = this;
+                let x = 0;
+                let y = 0;
+                switch (key) {
+                    case 'ArrowLeft':
+                        x--;
+                        break;
+                    case 'ArrowRight':
+                        x++;
+                        break;
+                    case 'ArrowDown':
+                        y++;
+                        break;
+                    case 'ArrowUp':
+                        rotatePiece();
+                        return;
+                    default:
+                        break;
+                }
+                movePiece(x, y);
+            }
         }
 
         this.handleStart = (event) => {
-            document.removeEventListener('keydown', this.handleStart);
-
             const { key } = event;
+
             if (key === ' ') {
+                document.removeEventListener('keydown', this.handleStart);
                 const { props, movePiece } = this;
         
                 movePiece(0, 0, true);
