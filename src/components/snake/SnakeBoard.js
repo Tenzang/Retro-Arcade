@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './Snake.scss';
-import Controls from './Controls';
+import Controls from '../UI/Controls';
 
 
 const SnakeBoard = () => {

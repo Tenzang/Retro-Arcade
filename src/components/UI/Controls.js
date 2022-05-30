@@ -1,5 +1,5 @@
 import React from "react";
-import './Snake.scss';
+import '../snake/Snake.scss';
 
 const Controls = ({setPlay, direction, setDirection}) => {
 

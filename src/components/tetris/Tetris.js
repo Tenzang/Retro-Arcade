@@ -6,7 +6,7 @@ import ScoreDisplay from './ScoreDisplay';
 import PieceDisplay from './PieceDisplay';
 import LinesClearedDisplay from './LinesClearedDisplay';
 import LevelDisplay from './LevelDisplay';
-import Controls from '../snake/Controls';
+import Controls from '../UI/Controls';
 import MessageDisplay from './MessageDisplay';
 
 class Tetris extends Component {
