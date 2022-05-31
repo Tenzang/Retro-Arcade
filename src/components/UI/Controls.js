@@ -1,21 +1,19 @@
 import React from "react";
 import '../snake/Snake.scss';
+import'./Controls.scss';
 
-const Controls = ({name, resetGame, buttonName }) => {
+const Controls = ({ name }) => {
     function handleButtonPress(e, buttonPressed) {
         e.preventDefault();
         if (e.type === "mousedown") {
-            console.log('mouse is down')
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': buttonPressed}));
         } else {
-            console.log('mouse is up')
             document.dispatchEvent(new KeyboardEvent('keyup', {'key': buttonPressed}));
         }
     }
 
     return (
         <div>
-            { name === 'Snake' ? <button className="reset button-85" onMouseDown={resetGame}>{buttonName}</button> : <div></div>}
             <div className="controls">
 
                 <div className="play-pause">

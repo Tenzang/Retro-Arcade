@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './Snake.scss';
-import Controls from '../UI/Controls';
 
 
 const SnakeBoard = () => {
@@ -210,6 +209,9 @@ const SnakeBoard = () => {
                        settingMoves(moves, 'ArrowDown')
                     }
                     break;
+                case ' ':
+                    setPlay(!play)
+                    break;
                 default:
                     break;
             }
@@ -221,7 +223,7 @@ const SnakeBoard = () => {
             document.removeEventListener("keydown", changeDirectionWithKeys);
         }
         
-    },[direction, moves, settingMoves])
+    },[direction, moves, settingMoves, play])
     
 
     const start = useCallback(e => { //start game with a space bar - remove modal & event listener
@@ -258,8 +260,10 @@ const SnakeBoard = () => {
         setButtonName('RESET')
     }
 
+
     useEffect(() => {
         document.addEventListener("keydown", start);
+
         return () => {
             document.removeEventListener("keydown", start);
         }
@@ -273,6 +277,7 @@ const SnakeBoard = () => {
         }
     }
 
+
     return (
         <div className='Snakeboard'>
             <h2 className='gameTitle'>SNAKE</h2>
@@ -284,12 +289,7 @@ const SnakeBoard = () => {
                 </div>       
             </div>
             <div className='points'>Points: { snake.length-1 }</div>
-            <Controls 
-                name={ 'Snake' }
-                resetGame={ resetGame }
-                buttonName={ buttonName }
-
-            />
+            <button className="reset button-85" onClick={ resetGame }>{buttonName}</button>
         </div>
     )
 }

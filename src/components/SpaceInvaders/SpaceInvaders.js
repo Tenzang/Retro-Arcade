@@ -3,7 +3,6 @@ import Title from "./Title";
 import Ship from './Ship'
 import './Space.scss'
 import Enemy from './Enemy'
-import Controls from "../UI/Controls";
 import { checkCollisionsWith } from "./Helper";
 import GameOverScreen from "./GameOverScreen";
 
@@ -42,7 +41,6 @@ class Space extends Component {
         switch(key) {
             case 'ArrowLeft':
                 keys.left = value;
-                console.log(this.pressedKeys)
                 break;
             case 'ArrowRight':
                 keys.right = value;
@@ -222,6 +220,15 @@ class Space extends Component {
         this.unbindKeys();
     }
 
+    handleClick = (e) => {
+        e.preventDefault();
+        if (e.type === "mousedown") {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
+        } else {
+            document.dispatchEvent(new KeyboardEvent('keyup', {'key': 'Enter'}));
+        }
+    }
+
     render() {
         return (
             <div className="SpaceInvaders">
@@ -229,7 +236,7 @@ class Space extends Component {
                 { this.state.gameState === GameState.StartScreen && <Title /> } {/*  only render on initial state plz.. */}
                 { this.state.gameState === GameState.GameOver && <GameOverScreen score={ this.state.score } />}
                 <h2>Score: { this.state.score } </h2>
-                <Controls name={ 'Space Invaders' } handleKeys={ this.handleKeys }/>
+                <button className="reset button-85" onMouseDown={(e) => this.handleClick(e) } onMouseUp={(e) => this.handleClick(e) }>Start</button>
             </div>
         )
     }

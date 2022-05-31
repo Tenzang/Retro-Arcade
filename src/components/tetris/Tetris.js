@@ -6,7 +6,6 @@ import ScoreDisplay from './ScoreDisplay';
 import PieceDisplay from './PieceDisplay';
 import LinesClearedDisplay from './LinesClearedDisplay';
 import LevelDisplay from './LevelDisplay';
-import Controls from '../UI/Controls';
 import MessageDisplay from './MessageDisplay';
 
 class Tetris extends Component {
@@ -70,7 +69,7 @@ class Tetris extends Component {
     }
 
     render() {
-        const { score, nextPiece, linesCleared, level, message, handleKeyDown } = this.state;
+        const { score, nextPiece, linesCleared, level, message } = this.state;
         const { 
             changeScore, 
             changeNextPiece,
@@ -104,13 +103,6 @@ class Tetris extends Component {
                         </div>
                     </div>
                 </div>
-                <Controls
-                    name={"Tetris"} 
-                    buttonName={ message.gameStart.is ? 'START': 'RESET' }
-                    changeInfo={ changeInfo }    // need loden's help with this
-                    message={ message }
-                    handleKeyDown={ handleKeyDown }
-                />
             </div>
         );
     }
