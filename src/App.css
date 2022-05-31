@@ -104,9 +104,26 @@ body {
     .siteName {
         font-size: 2em;
         font-weight: 300;
+        margin-bottom: 0;
     }
 
+    .swiper-button-next, .swiper-button-prev {
+        top: 30px !important;
+        transform: scale(0.8);
+        z-index: 5;
+        overflow: auto;
+    }
 
+    .swiper-button-next {
+        right: 20px !important;
+    }
 
+    .swiper-button-prev { 
+        left: 20px !important;
+    }
 
+    .gameTitle {
+        margin-top: 20px;
+        font-size: 1.2em ;
+    }
 }

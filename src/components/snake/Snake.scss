@@ -89,65 +89,6 @@ body {
     color: white;
 }
 
-.controls {
-    width: 600px;
-    display: flex;
-    justify-content: space-between;
-    margin: 10px auto;
-}
-
-.controls-direction {
-    height: 200px;
-}
-
-@mixin controlBtn {
-    width: 80px;
-    height: 80px;
-    border-radius: 80px;
-    position: relative;
-    background-color: blue;
-    color: white;
-    box-shadow: 3px 3px 3px rgba(111, 110, 110, 0.594);
-    font-family: 'Press Start 2P', cursive;
-}
-
-.up {
-    @include controlBtn;
-    position: relative;
-    left: 30px;
-}
-
-.down {
-    @include controlBtn;
-    position: relative;
-    top: 100px;
-    left: -50px;
-}
-
-.left {
-    @include controlBtn;
-    position: relative;
-    top: 55px;
-    left: 30px;
-}
-
-.right {
-    @include controlBtn;
-    position: relative;
-    top: 55px;
-    left: -50px;
-}
-
-.play {
-    @include controlBtn;
-    background-color: green;
-    margin-right: 10px;
-}
-
-.pause {
-    @include controlBtn;
-    background-color: red;
-}
 
 .message {
     text-transform: uppercase;
@@ -186,9 +127,6 @@ body {
     }
 }
 
-.play-pause {
-    margin: 50px auto;
-}
 
 
 .reset {
@@ -273,16 +211,11 @@ body {
     box-shadow: inset 0.2em -0.2em #cc1022;
     border-radius: 2.5em 2.5em 3em 3em;
     position: relative;
-
-    // position:absolute;
-    // top: 1.3em;
-    // left:0.3em;
 }
  
 .leaf {
     content: "";
     position: relative;
-    // top: -5px;
     left: 15px;
     height: 0;
     width: 1px;
@@ -347,72 +280,6 @@ body {
         border-right-color: #437512;
         box-sizing: border-box;
     }
-
-    /* ------------------ MQ - controls -----------------*/
-    .controls {
-        width: 390px;
-        display: flex;
-        justify-content: space-between;
-        margin: 10px auto;
-        box-sizing: border-box;
-    }
-    
-    .controls-direction {
-        height: 200px;
-        width: 50%;
-        box-sizing: border-box;
-    }
-    
-    @mixin controlBtn {
-        width: 70px;
-        height: 70px;
-        border-radius: 70px;
-        position: relative;
-        background-color: blue;
-        color: white;
-        font-size: 0.7em;
-        box-shadow: 3px 3px 3px rgba(111, 110, 110, 0.594);
-        
-    }
-    
-    .up {
-        @include controlBtn;
-        position: relative;
-        left: -35px;
-    }
-    
-    .down {
-        @include controlBtn;
-        position: relative;
-        top: 50px;
-        left: 35px;
-    }
-    
-    .left {
-        @include controlBtn;
-        position: relative;
-        top: 55px;
-        left: -25px;
-    }
-    
-    .right {
-        @include controlBtn;
-        position: relative;
-        top: -12px;
-        left: 20px;
-    }
-    
-    .play {
-        @include controlBtn;
-        background-color: green;
-        margin-right: 10px;
-    }
-    
-    .pause {
-        @include controlBtn;
-        background-color: red;
-    }
-
 
     .message {
         text-transform: uppercase;
