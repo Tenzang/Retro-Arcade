@@ -6,7 +6,6 @@ import Enemy from './Enemy'
 import { checkCollisionsWith } from "./Helper";
 import GameOverScreen from "./GameOverScreen";
 
-
 const width = 620;
 const height = 620;
 
@@ -15,6 +14,7 @@ const GameState = { // didn't do true false, cause diff stages
     Playing: 1, 
     GameOver: 2
 };
+
 class Space extends Component {
     constructor() {
         super();
@@ -79,7 +79,7 @@ class Space extends Component {
             }})
 
         this.ship = ship;
-        this.enemies = []
+        this.enemies = [];
         this.createEnemy(24); // how many enemy ships do you want
         this.setState({ 
             gameState: GameState.Playing,
@@ -97,14 +97,14 @@ class Space extends Component {
         }
 
         if ( this.state.gameState === GameState.GameOver && keys.enter ) {
-            this.setState({ gameState: GameState.StartScreen })
+            this.setState({ gameState: GameState.StartScreen });
         }
 
         const context = this.state.context;
         context.save();
         context.globalAlpha = 1;
 
-        context.clearRect(0,0, this.state.screen.width, this.state.screen.height) // clearing the screen
+        context.clearRect(0,0, this.state.screen.width, this.state.screen.height); // clearing the screen
 
 
         if ( this.state.gameState === GameState.Playing ) {
@@ -126,26 +126,22 @@ class Space extends Component {
 
 
             if (this.enemies.length === 0) {
-                this.createEnemy(24)
+                this.createEnemy(24);
                 //this.setState({ gameState: GameState.GameOver });
               }
         }
-
-
-
 
         requestAnimationFrame(() => { this.update() }); // requestAnimationFrame is smoother than setInterval()
     }
 
     increaseScore(val) {
-        this.setState({ score: this.state.score + 200 })
+        this.setState({ score: this.state.score + 200 });
     }
-
 
     die() {
         return new Promise(() => {
             this.setState({ gameState: GameState.GameOver });
-            console.log('set game over', Date.now())
+            console.log('set game over', Date.now());
             this.ship = null;
             this.invaders = [];
         })
@@ -182,7 +178,7 @@ class Space extends Component {
 
         for (let enemy of this.enemies) {
             if (enemy.delete) {
-                this.enemies.splice(index, 1)
+                this.enemies.splice(index, 1);
             } else if (enemy.position.x + enemy.radius >= this.state.screen.width || enemy.position.x - enemy.radius <= 0) {
                 reverse = true;
             } else {
@@ -204,29 +200,25 @@ class Space extends Component {
             this.enemies[index].reverse();
             this.enemies[index].position.y += 20;
             index++;
-            console.log(enemy)
+            console.log(enemy);
         }
     }
-
 
     componentDidMount() {
         this.bindKeys();
         const context = this.refs.canvas.getContext('2d'); //initialise ship
-        this.setState({ context: context})
-        requestAnimationFrame(() => { this.update() }) // calling game loop for the first time
+        this.setState({ context: context});
+        requestAnimationFrame(() => { this.update() }); // calling game loop for the first time
     }
 
     componentWillUnmount() {
         this.unbindKeys();
     }
 
-    handleClick = (e) => {
+    handleStart = (e) => {
         e.preventDefault();
-        if (e.type === "mousedown") {
-            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
-        } else {
-            document.dispatchEvent(new KeyboardEvent('keyup', {'key': 'Enter'}));
-        }
+        const { pressedKeys } = this;
+        pressedKeys.enter = true;
     }
 
     render() {
@@ -239,7 +231,7 @@ class Space extends Component {
                 <div className='start-Points'>
                     <div></div>
                     <div>
-                        <button className="reset button-85" onMouseDown={(e) => this.handleClick(e) } onMouseUp={(e) => this.handleClick(e) }>START</button>
+                        <button className="reset button-85" onClick={(e) => this.handleStart(e) }>START</button>
                     </div>
                     <div className="points">Score: { this.state.score } </div>
                 </div>
@@ -248,4 +240,4 @@ class Space extends Component {
     }
 }
 
-export default Space
+export default Space;
