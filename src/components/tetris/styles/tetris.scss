@@ -140,7 +140,7 @@ $cell: 25px;
 @media only screen and (max-width: 600px) {
 
 
-    $size: 15px;
+    $size: 12.5px;
 
     .swiper-button-next {
         position: absolute;
@@ -150,10 +150,12 @@ $cell: 25px;
     .tetrisContainer {
         display: grid;
         grid-template-columns: 55% 45%;
-        margin: 20px 10px;
+        margin: 20px auto;
         border: 3px solid black;
         padding: 15px;
-        width: 321px;
+        width: 310px;
+        height: 310px;
+        box-sizing: border-box;
     }
 
     .cell {
@@ -203,31 +205,25 @@ $cell: 25px;
 
     .info-display {
         font-size: 70%;
-        margin: 20px 20px;
-        // margin-left: 30px;
+        margin: 10px;
+        margin-left: 20px;
     }
 
     .messageDisplay .messageText {
-        font-size: 150%;
+        font-size: 120%;
     }
     
     .messageDisplay .instructions {
-        font-size: 60%;
+        font-size: 50%;
         line-height: 200%;
     }
     
     
     .messageDisplay {
         position: absolute;
-        right: -5px;
+        right: 0;
         top: 60%;
-        width: 170px;
+        width: 140px;
     }
-
-    .gameContainer {
-        padding: 0 10px;
-    }
-
-
     
 }

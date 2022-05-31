@@ -233,10 +233,10 @@ class Space extends Component {
         return (
             <div className="SpaceInvaders">
                 <h2 className="gameTitle">SPACE INVADERS</h2>
-                <canvas ref="canvas" width={width} height={height}/>
+                <canvas id="space" ref="canvas" width={width} height={height}/>
                 { this.state.gameState === GameState.StartScreen && <Title /> } {/*  only render on initial state plz.. */}
                 { this.state.gameState === GameState.GameOver && <GameOverScreen score={ this.state.score } />}
-                <h2>Score: { this.state.score } </h2>
+                <h2 className="score">Score: { this.state.score } </h2>
                 <button className="reset button-85" onMouseDown={(e) => this.handleClick(e) } onMouseUp={(e) => this.handleClick(e) }>Start</button>
             </div>
         )

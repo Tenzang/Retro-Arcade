@@ -82,25 +82,23 @@ class Tetris extends Component {
         return (
             <div className='tetrisGame'>
                 <h2 className='gameTitle'>TETRIS</h2>
-                <div className='gameContainer'>
-                    <div className='tetrisContainer'>
-                        <div>
-                            <Playfield 
-                                changeScore={ changeScore } 
-                                changeNextPiece={ changeNextPiece }
-                                changeLinesCleared={ changeLinesCleared }
-                                changeLevel={ changeLevel }
-                                changeInfo={ changeInfo }
-                                liftHandleKeyDown={ liftHandleKeyDown }
-                            />
-                        </div>
-                        <div>
-                            <PieceDisplay nextPiece={ nextPiece } />
-                            <ScoreDisplay score={ score } />
-                            <LinesClearedDisplay linesCleared={ linesCleared } />
-                            <LevelDisplay level={ level } />
-                            <MessageDisplay message={ message } />
-                        </div>
+                <div className='tetrisContainer'>
+                    <div>
+                        <Playfield 
+                            changeScore={ changeScore } 
+                            changeNextPiece={ changeNextPiece }
+                            changeLinesCleared={ changeLinesCleared }
+                            changeLevel={ changeLevel }
+                            changeInfo={ changeInfo }
+                            liftHandleKeyDown={ liftHandleKeyDown }
+                        />
+                    </div>
+                    <div>
+                        <PieceDisplay nextPiece={ nextPiece } />
+                        <ScoreDisplay score={ score } />
+                        <LinesClearedDisplay linesCleared={ linesCleared } />
+                        <LevelDisplay level={ level } />
+                        <MessageDisplay message={ message } />
                     </div>
                 </div>
             </div>

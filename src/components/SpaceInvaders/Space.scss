@@ -15,6 +15,42 @@
     margin: 40px 0;
 }
 
+#space {
+    background-image: url(./assets/space.png);
+    border-radius: 5px;
+}
+
+.SpaceInvaders:before {
+    content: " ";
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+      );
+    //   margin: 0 auto;
+    position: absolute;
+    top: 51px;
+    left: 33px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(83%);
+    height: calc(70%);
+    animation: glowing-button-85 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+
+
 /* ------------------------ media queries ------------------------*/
 
 @media only screen and (max-width: 600px) {
@@ -24,10 +60,31 @@
         font-size: 0.5em;
     }
 
-    canvas {
-        transform: scale(0.55);
-        position: relative;
-        top: -130px;
-        left: -117px;
+    #space {
+        width: 310px;
+    }
+
+    .SpaceTitle {
+        position: absolute;
+        top: 150px;
+        left: 85px;
+    }
+
+    .GameOverScreen {
+        position: absolute;
+        transform: scale(0.7);
+        top: 75px;
+        left: 15px;
+    }
+
+    .score {
+        font-size: 1em;
+        color: white;
+        margin: 10px 0;
+    }
+
+    .reset {
+        font-size: 1em;
+        margin-bottom: 10px;
     }
 }

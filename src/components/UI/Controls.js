@@ -3,7 +3,7 @@ import '../snake/Snake.scss';
 import'./Controls.scss';
 import rotate from './rotate.png'
 
-const Controls = ({ name }) => {
+const Controls = ({ name, resetGame, buttonName }) => {
     function handleButtonPress(e, buttonPressed) {
         e.preventDefault();
         if (e.type === "mousedown") {

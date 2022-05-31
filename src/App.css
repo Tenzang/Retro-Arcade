@@ -8,12 +8,6 @@
 
 }
 
-
-canvas {
-    background-image: url('./components/SpaceInvaders/assets/space.png');
-    background-size: cover;
-}
-
 body {
     font-family: 'Press Start 2P', cursive;
     background-image: url('../public/background.jpeg');
