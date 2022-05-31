@@ -101,6 +101,7 @@ class Tetris extends Component {
                         <MessageDisplay message={ message } />
                     </div>
                 </div>
+                <div className='start-Points'></div>
             </div>
         );
     }

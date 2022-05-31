@@ -17,6 +17,7 @@ body {
     background-blend-mode: multiply;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
 }
 
 .siteName {
@@ -24,12 +25,12 @@ body {
     color: white;
     display: inline-block;
     text-transform: uppercase;
-    --neon-text-color: #f40;
+    --neon-text-color: rgb(255, 0, 234);
     --neon-border-color: #08f;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 200;   /* can't decide between 200 or 300 */
     color: #fff;
-    padding: 2rem 3rem 2.5rem; 
+    padding: 1.5rem 2.5rem 2rem; 
     border: 0.4rem solid #fff;
     border-radius: 2rem;
     animation: flicker 1.5s infinite alternate;

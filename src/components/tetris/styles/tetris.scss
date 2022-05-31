@@ -11,7 +11,7 @@ $cell: 25px;
     background-color: $lightGreen;
     padding: 40px 0;
     position: relative;
-    margin: 20px 60px;
+    margin: 20px auto;
     border: 5px solid black;
     width: 600px;
     border-radius: 8px;
@@ -129,7 +129,7 @@ $cell: 25px;
 
 .messageDisplay {
     position: absolute;
-    right: 20px;
+    right: 0;
     top: 55%;
     width: 270px;
 }
@@ -150,7 +150,7 @@ $cell: 25px;
     .tetrisContainer {
         display: grid;
         grid-template-columns: 55% 45%;
-        margin: 20px auto;
+        margin: 10px auto;
         border: 3px solid black;
         padding: 15px;
         width: 310px;
@@ -221,7 +221,6 @@ $cell: 25px;
     
     .messageDisplay {
         position: absolute;
-        right: 0;
         top: 60%;
         width: 140px;
     }

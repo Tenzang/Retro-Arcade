@@ -236,8 +236,13 @@ class Space extends Component {
                 <canvas id="space" ref="canvas" width={width} height={height}/>
                 { this.state.gameState === GameState.StartScreen && <Title /> } {/*  only render on initial state plz.. */}
                 { this.state.gameState === GameState.GameOver && <GameOverScreen score={ this.state.score } />}
-                <h2 className="score">Score: { this.state.score } </h2>
-                <button className="reset button-85" onMouseDown={(e) => this.handleClick(e) } onMouseUp={(e) => this.handleClick(e) }>Start</button>
+                <div className='start-Points'>
+                    <div></div>
+                    <div>
+                        <button className="reset button-85" onMouseDown={(e) => this.handleClick(e) } onMouseUp={(e) => this.handleClick(e) }>START</button>
+                    </div>
+                    <div className="points">Score: { this.state.score } </div>
+                </div>
             </div>
         )
     }

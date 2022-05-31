@@ -36,14 +36,14 @@
       );
     //   margin: 0 auto;
     position: absolute;
-    top: 51px;
-    left: 33px;
+    top: 59px;
+    left: 85px;
     background-size: 400%;
     z-index: -1;
     filter: blur(5px);
     -webkit-filter: blur(5px);
-    width: calc(83%);
-    height: calc(70%);
+    width: calc(78.5%);
+    height: calc(84.5%);
     animation: glowing-button-85 20s linear infinite;
     transition: opacity 0.3s ease-in-out;
     border-radius: 10px;
@@ -54,6 +54,11 @@
 /* ------------------------ media queries ------------------------*/
 
 @media only screen and (max-width: 600px) {
+    
+    .SpaceInvaders{
+        margin: 10px auto;
+    }
+
     .SpaceTitle {
         color: white;
         position: relative;
@@ -87,4 +92,34 @@
         font-size: 1em;
         margin-bottom: 10px;
     }
+
+    .SpaceInvaders:before {
+        content: " ";
+        background: linear-gradient(
+            45deg,
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000
+          );
+        //   margin: 0 auto;
+        position: absolute;
+        top: 51px;
+        left: 38px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        width: calc(80.5%);
+        height: calc(74.5%);
+        animation: glowing-button-85 20s linear infinite;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 10px;
+    }
+
 }

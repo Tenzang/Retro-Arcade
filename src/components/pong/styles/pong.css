@@ -1,40 +1,42 @@
-#pongContainer {
-    margin: 0 auto;
-    height: 400px;
-}
+
 
 #pong {
     border-radius: 5px;
 }
 
-#pongContainer:before {
-    content: " ";
-    background: linear-gradient(
-        45deg,
-        #ff0000,
-        #ff7300,
-        #fffb00,
-        #48ff00,
-        #00ffd5,
-        #002bff,
-        #7a00ff,
-        #ff00c8,
-        #ff0000
-      );
-    margin: 0 auto;
-    position: absolute;
-    top: 51px;
-    left: 35px;
-    background-size: 400%;
-    z-index: -1;
-    filter: blur(5px);
-    -webkit-filter: blur(5px);
-    width: calc(82%);
-    height: calc(75%);
-    animation: glowing-button-85 20s linear infinite;
-    transition: opacity 0.3s ease-in-out;
-    border-radius: 10px;
+#pongContainer {
+    height: 655px;
+
 }
+
+#pongContainer:before {
+        content: " ";
+        background: linear-gradient(
+            45deg,
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000
+          );
+        margin: 0 auto;
+        position: absolute;
+        top: 59px;
+        left: 95px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        width: calc(76%);
+        height: calc(90%);
+        animation: glowing-button-85 20s linear infinite;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 10px;
+    }
 
 
 
@@ -42,6 +44,41 @@
     #pong {
         width: 310px;
         margin: 0 auto;
+    }
+
+    #pongContainer {
+        margin: 0 auto;
+        height: 400px;
+        margin-bottom: 14.92px;
+    }
+
+    #pongContainer:before {
+        content: " ";
+        background: linear-gradient(
+            45deg,
+            #ff0000,
+            #ff7300,
+            #fffb00,
+            #48ff00,
+            #00ffd5,
+            #002bff,
+            #7a00ff,
+            #ff00c8,
+            #ff0000
+          );
+        margin: 0 auto;
+        position: absolute;
+        top: 51px;
+        left: 35px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        width: calc(82%);
+        height: calc(73%);
+        animation: glowing-button-85 20s linear infinite;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 10px;
     }
 
 }

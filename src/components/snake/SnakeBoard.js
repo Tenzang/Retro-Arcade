@@ -288,8 +288,14 @@ const SnakeBoard = () => {
                     <button className="reset button-85" style={{ visibility: showReset }} onClick={ resetGame }>Reset</button>
                 </div>       
             </div>
-            <div className='points'>Points: { snake.length-1 }</div>
-            <button className="reset button-85" onClick={ resetGame }>{buttonName}</button>
+            <div className='start-Points'>
+                <div></div>
+                <div>
+                    <button className="reset button-85" onClick={ resetGame }>{buttonName}</button>
+                </div>
+                <div className='points'>Score: { snake.length-1 }</div>
+            </div>
+
         </div>
     )
 }
