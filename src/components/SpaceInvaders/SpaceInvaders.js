@@ -42,6 +42,7 @@ class Space extends Component {
         switch(key) {
             case 'ArrowLeft':
                 keys.left = value;
+                console.log(this.pressedKeys)
                 break;
             case 'ArrowRight':
                 keys.right = value;
@@ -86,7 +87,6 @@ class Space extends Component {
             gameState: GameState.Playing,
             score: 0
         });
-        console.log('started -set to playNow', Date.now())
     }
 
 
@@ -124,7 +124,6 @@ class Space extends Component {
                 for (let i = 0; i < this.enemies.length; i++) {
                     checkCollisionsWith(this.enemies[i].bullets, [this.ship]); // check enemy bullets vs player
                 }
-                console.log('game state playing & checking collision', Date.now())
             }
 
 
@@ -230,7 +229,7 @@ class Space extends Component {
                 { this.state.gameState === GameState.StartScreen && <Title /> } {/*  only render on initial state plz.. */}
                 { this.state.gameState === GameState.GameOver && <GameOverScreen score={ this.state.score } />}
                 <h2>Score: { this.state.score } </h2>
-                <Controls handleKeys={ this.handleKeys }/>
+                <Controls name={ 'Space Invaders' } handleKeys={ this.handleKeys }/>
             </div>
         )
     }

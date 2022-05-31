@@ -12,7 +12,6 @@ export const checkCollisionsWith = async (array1, array2) => {
             if ( checkingCollision(arrayA, arrayB)) {
                 await arrayA.die();
                 await arrayB.die();
-                console.log('calling die in helpers', Date.now())
             }
         }
     }
@@ -23,8 +22,6 @@ export const checkCollisionsWith = async (array1, array2) => {
 // Hypotenuse / Euclidean distance formula to compare the distance between two points and seeing if the sum of their radiuses is less than the distance (otherwise there is an overlap/collision)
 export const checkingCollision = (obj1, obj2) => {
 
-    // console.log('object 1', obj1);
-    // console.log('object 2', obj2)
     const vx = obj1.position.x - obj2.position.x;
     const vy = obj1.position.y - obj2.position.y;
 

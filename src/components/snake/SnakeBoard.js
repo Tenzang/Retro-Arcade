@@ -225,8 +225,8 @@ const SnakeBoard = () => {
     
 
     const start = useCallback(e => { //start game with a space bar - remove modal & event listener
-        switch(e.code) {
-            case 'Space':
+        switch(e.key) {
+            case ' ':
                 setPlay(true)
                 setVisibility('hidden')
                 setShowInstruction('hidden')
@@ -286,13 +286,9 @@ const SnakeBoard = () => {
             <div className='points'>Points: { snake.length-1 }</div>
             <Controls 
                 name={ 'Snake' }
-                setPlay={ setPlay } 
-                direction={ direction } 
-                setDirection={ setDirection }
                 resetGame={ resetGame }
                 buttonName={ buttonName }
-                moves={ moves }
-                settingMoves={  settingMoves }
+
             />
         </div>
     )
