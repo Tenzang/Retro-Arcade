@@ -19,14 +19,14 @@ const Controls = ({ name, resetGame, buttonName }) => {
         <div className="controls">
 
             <div className="play-pause">
-                <button className="push--skeuo play" onMouseDown={(e) => handleButtonPress( e, ' ')} onMouseUp={(e) => handleButtonPress( e, ' ')}>{ name === 'Space Invaders' ? 'SHOOT' : <img className="play-img" src={play} /> }</button>
+                <button className="push--skeuo play" onMouseDown={(e) => handleButtonPress( e, ' ')} onMouseUp={(e) => handleButtonPress( e, ' ')}>{ name === 'Space Invaders' ? 'SHOOT' : <img className="play-img" alt="play-pause button" src={play} /> }</button>
             </div>
 
             <div className="controls-direction">
-                <button className="press--direction left" onMouseDown={(e) => handleButtonPress(e, 'ArrowLeft')} onMouseUp={(e) => handleButtonPress(e, 'ArrowLeft')} ><img id="left" src={ arrow } /></button>
-                <button className="press--direction up" onMouseDown={(e) => handleButtonPress(e, 'ArrowUp')} onMouseUp={(e) => handleButtonPress(e, 'ArrowUp')} >{name === 'Tetris' ? <img className="rotate" src={rotate} /> : <img id="up" src={ arrow } /> }</button>
-                <button className="press--direction down" onMouseDown={(e) => handleButtonPress(e, 'ArrowDown')} onMouseUp={(e) => handleButtonPress(e, 'ArrowDown')} ><img id="down" src={ arrow } /></button>
-                <button className="press--direction right" onMouseDown={(e) => handleButtonPress(e, 'ArrowRight')} onMouseUp={(e) => handleButtonPress(e, 'ArrowRight')} ><img id="right" src={ arrow } /></button>
+                <button className="press--direction left" onMouseDown={(e) => handleButtonPress(e, 'ArrowLeft')} onMouseUp={(e) => handleButtonPress(e, 'ArrowLeft')} ><img id="left" alt="left button" src={ arrow } /></button>
+                <button className="press--direction up" onMouseDown={(e) => handleButtonPress(e, 'ArrowUp')} onMouseUp={(e) => handleButtonPress(e, 'ArrowUp')} >{name === 'Tetris' ? <img alt="rotate button" className="rotate" src={rotate} /> : <img alt="up button" id="up" src={ arrow } /> }</button>
+                <button className="press--direction down" onMouseDown={(e) => handleButtonPress(e, 'ArrowDown')} onMouseUp={(e) => handleButtonPress(e, 'ArrowDown')} ><img alt="down button" id="down" src={ arrow } /></button>
+                <button className="press--direction right" onMouseDown={(e) => handleButtonPress(e, 'ArrowRight')} onMouseUp={(e) => handleButtonPress(e, 'ArrowRight')} ><img alt="right button" id="right" src={ arrow } /></button>
             </div>
 
         </div>
