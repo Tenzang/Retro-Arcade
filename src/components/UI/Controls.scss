@@ -256,6 +256,62 @@ $pushSize: 100px;
 }
 /* ------------------ MQ - controls -----------------*/
 
+@media only screen and (min-width: 600px) and (max-width: 1130px) { 
+
+    body {
+        overflow-y: scroll;
+    }
+    
+    .controls {
+        width: 610px;
+        position: static;
+        display: flex;
+        margin: 0 auto;
+        transform: translate(0%);
+        height: 240px;
+    }
+
+    .controls-direction {
+        right: 0;
+        top: 0;
+        display: inline-block;
+    }
+
+    .play-pause {
+        position: static;
+        display: inline-block;
+        padding-top: 45px;
+        padding-left: 50px;
+    }
+
+    .left {
+        left: 41px;
+        top: 49px;
+    }
+
+    .right {
+        left: 84px;
+        top: -77px;
+    }
+
+    .up {
+        left: 0px;
+        top: -10px
+    }
+
+    .down {
+        top: 109px;
+        left: -127px;
+    }
+
+    .play-img {
+        height: 60px;
+    }
+
+    #up, #left, #right, #down, .rotate {
+        height: 35px;
+    }
+}
 
 @media only screen and (max-width: 600px) { 
 
