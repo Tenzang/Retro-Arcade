@@ -41,12 +41,6 @@ export default class App extends Component {
             >
                 <SwiperSlide>
                     {({ isActive }) => (
-                        <div>{isActive ? <Pong /> : ''}</div>
-                    )}
-                </SwiperSlide>
-
-                <SwiperSlide>
-                    {({ isActive }) => (
                         <div>{isActive ? <Tetris/> : ''}</div>
                     )}
                 </SwiperSlide>
@@ -60,6 +54,12 @@ export default class App extends Component {
                 <SwiperSlide>
                     {({ isActive }) => (
                         <div>{isActive ? <SpaceInvaders /> : ''}</div>
+                    )}
+                </SwiperSlide>
+
+                <SwiperSlide>
+                    {({ isActive }) => (
+                        <div>{isActive ? <Pong /> : ''}</div>
                     )}
                 </SwiperSlide>
             </Swiper>

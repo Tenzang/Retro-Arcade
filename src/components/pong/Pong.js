@@ -129,11 +129,19 @@ class Pong extends Component {
         let yOverlap = ballBottom <= paddleBottom + padding && ballTop >= paddleTop - padding;
 
         if (xAligned && yOverlap) {
-            let { xPos } = ball;
+            let { xPos, yVel } = ball;
             xVel *= -1;
             xPos += xVel;
 
-            this.setState({ ball: { ...ball, xPos, xVel } });
+            if (ball.yPos < paddle1.yPos + paddleInfo.height/4) {
+                yVel = -2;
+            } else if (ball.yPos > paddle1.yPos + paddleInfo.height/4*3) {
+                yVel = 2;
+            } else {
+                yVel = 0;
+            }
+
+            this.setState({ ball: { ...ball, xPos, xVel, yVel } });
         }
 
         // collision with paddle2
@@ -149,22 +157,40 @@ class Pong extends Component {
 
         yOverlap = ballBottom <= paddleBottom + padding && ballTop >= paddleTop - padding;
 
-
         if (xAligned && yOverlap) {
-            let { xPos } = ball;
+            let { xPos, yVel } = ball;
             console.log('collision with paddle2 detected!');
             xVel *= -1;
             xPos += xVel;
 
-            this.setState({ ball: { ...ball, xPos, xVel } });
+            if (ball.yPos < paddle2.yPos + paddleInfo.height/4) {
+                yVel = -2;
+            } else if (ball.yPos > paddle2.yPos + paddleInfo.height/4*3) {
+                yVel = 2;
+            } else {
+                yVel = 0;
+            }
+
+            this.setState({ ball: { ...ball, xPos, xVel, yVel } });
         }
         
-        const outsideBoundary = ball.xPos < 0 || ball.xPos > screen.width;
-        if (outsideBoundary) {
+        const goalScored = ball.xPos < 0 || ball.xPos > screen.width;
+        if (goalScored) {
             console.log('outside bounds!');
 
             this.resetBall((xVel * -1));
         }
+
+        padding = 10; // idek
+
+        const wallTouching = ball.yPos - ball.radius < 0 || ball.yPos + ball.radius > screen.height;
+        if (wallTouching) {
+            // flip y velocity
+            const yVel = ball.yVel * -1;
+            // nudge ball away from wall to prevent game freeze
+            const yPos = ball.yPos + yVel;
+            this.setState({ ball: { ...ball, yVel, yPos }});
+        } 
 
     }
 
