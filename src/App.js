@@ -8,6 +8,7 @@ import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation'
 import SpaceInvaders from './components/SpaceInvaders/SpaceInvaders'
+import Pong from './components/pong/Pong';
 
 export default class App extends Component {
     constructor() {
@@ -40,14 +41,22 @@ export default class App extends Component {
             >
                 <SwiperSlide>
                     {({ isActive }) => (
+                        <div>{isActive ? <Pong /> : ''}</div>
+                    )}
+                </SwiperSlide>
+
+                <SwiperSlide>
+                    {({ isActive }) => (
                         <div>{isActive ? <Tetris/> : ''}</div>
                     )}
                 </SwiperSlide>
+
                 <SwiperSlide>
                     {({ isActive }) => (
                         <div>{isActive ? <SnakeBoard/> : ''}</div>
                     )}
                 </SwiperSlide>
+
                 <SwiperSlide>
                     {({ isActive }) => (
                         <div>{isActive ? <SpaceInvaders /> : ''}</div>

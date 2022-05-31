@@ -6,6 +6,10 @@
     top: -400px;
 }
 
+#space {
+    background-image: url('./assets/space.png');
+    background-size: cover;
+}
 
 /* ------------------------ media queries ------------------------*/
 
@@ -16,7 +20,7 @@
         font-size: 0.5em;
     }
 
-    canvas {
+    #space {
         transform: scale(0.55);
         position: relative;
         top: -130px;

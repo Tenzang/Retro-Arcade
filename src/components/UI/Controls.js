@@ -1,7 +1,7 @@
 import React from "react";
 import '../snake/Snake.scss';
 
-const Controls = ({name, resetGame, buttonName, moves, settingMoves, handleKeyDown }) => {
+const Controls = ({ name, resetGame, buttonName }) => {
     function handleButtonPress(e, buttonPressed) {
         e.preventDefault();
 
