@@ -8,7 +8,7 @@ function MessageDisplay( { message} ) {
     if (currentState) {
         return (
             <div className="messageDisplay">
-                <h3 className="messageText">{ currentState.message }</h3>
+                <h3 className='messageText' id={ gamePaused.is ? 'pause-text' : '' }>{ currentState.message }</h3>
                 <p className="instructions">{ currentState.instruction }</p>
             </div>
         );

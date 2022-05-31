@@ -122,6 +122,10 @@ $cell: 25px;
     font-size: 300%;
 }
 
+#pause-text {
+    font-size: 2.5rem;
+}
+
 .messageDisplay .instructions {
     font-size: 60%;
 }
@@ -209,7 +213,7 @@ $cell: 25px;
         margin-left: 20px;
     }
 
-    .messageDisplay .messageText {
+    .messageDisplay .messageText, #pause-text {
         font-size: 120%;
     }
     
