@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
 import './styles/pong.css';
 
 const width = 600;
@@ -112,9 +111,8 @@ class Pong extends Component {
     }
 
     checkForCollision() {
-        const { paddle1, paddle2, paddleInfo, ball, screen, scores } = this.state;
+        const { paddle1, paddle2, paddleInfo, ball, screen } = this.state;
         let { xVel } = ball;
-        const { height, width } = paddleInfo;
         
         // collision with paddle1
         let xAligned = ball.xPos - ball.radius < paddle1.xPos + paddleInfo.width;
