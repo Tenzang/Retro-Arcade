@@ -232,7 +232,7 @@ class Space extends Component {
     render() {
         return (
             <div className="SpaceInvaders">
-                <canvas ref="canvas" width={width} height={height}/>
+                <canvas id="space" ref="canvas" width={width} height={height}/>
                 { this.state.gameState === GameState.StartScreen && <Title /> } {/*  only render on initial state plz.. */}
                 { this.state.gameState === GameState.GameOver && <GameOverScreen score={ this.state.score } />}
                 <h2>Score: { this.state.score } </h2>

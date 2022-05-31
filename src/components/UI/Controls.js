@@ -2,7 +2,7 @@ import React from "react";
 import '../snake/Snake.scss';
 import'./Controls.scss';
 
-const Controls = ({ name }) => {
+const Controls = ({ name, resetGame, buttonName }) => {
     function handleButtonPress(e, buttonPressed) {
         e.preventDefault();
         if (e.type === "mousedown") {

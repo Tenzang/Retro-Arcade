@@ -9,6 +9,7 @@ import 'swiper/css';
 import 'swiper/css/navigation'
 import SpaceInvaders from './components/SpaceInvaders/SpaceInvaders'
 import Controls from './components/UI/Controls';
+import Pong from './components/pong/Pong';
 
 const App = () => {
 
@@ -35,14 +36,22 @@ const App = () => {
                         <div>{isActive ? <Tetris/> : ''}</div>
                     )}
                 </SwiperSlide>
+
                 <SwiperSlide>
                     {({ isActive }) => (
                         <div>{isActive ? <SnakeBoard/> : ''}</div>
                     )}
                 </SwiperSlide>
+
                 <SwiperSlide>
                     {({ isActive }) => (
                         <div>{isActive ? <SpaceInvaders /> : ''}</div>
+                    )}
+                </SwiperSlide>
+
+                <SwiperSlide>
+                    {({ isActive }) => (
+                        <div>{isActive ? <Pong /> : ''}</div>
                     )}
                 </SwiperSlide>
             </Swiper>
