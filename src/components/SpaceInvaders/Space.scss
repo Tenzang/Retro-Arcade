@@ -1,11 +1,19 @@
 
 
-.SpaceTitle {
+.SpaceTitle, .GameOverScreen {
     color: white;
-    position: relative;
-    top: -400px;
+    position: absolute;
+    top: 180px;
+    left: 195px;
 }
 
+.GameOverScreen p {
+    margin: 100px 0;
+}
+
+.GameOverScreen h3 {
+    margin: 40px 0;
+}
 
 /* ------------------------ media queries ------------------------*/
 

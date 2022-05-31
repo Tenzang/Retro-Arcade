@@ -17,8 +17,9 @@ class Enemy extends GameObject {
             radius: 40
         });
         this.direction = Direction.Right;
-        this.bullets=[]
+        this.bullets=[];
         this.lastShot = 0;
+        this.shootDelay = Date.now();
     }
 
     reverse() {
@@ -38,8 +39,10 @@ class Enemy extends GameObject {
             this.position.x -= this.speed;
         }
 
-        let nextShot = Math.random() * 6 * 1000000 
-        if (Date.now() - this.lastShot > 200 * nextShot) { // check when "space" is pressed and at least 200ms have passed since last shot fired.
+        let nextShot = Math.random() * 6 * 200000 // such a high number because there are so any enemy ships and they will fire too many bullets otherwise
+
+        let now = Date.now();
+        if (now - this.shootDelay > nextShot && this.bullets.length <= 2 && now - this.lastShot > nextShot) { // don't fire unless the delay is greater than next shot & no more than 2 bullets fired
             const bullet = new Bullet({
                 position: {  // bullet shoots up from enemy's position
                     x: this.position.x, 

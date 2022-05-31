@@ -11,11 +11,6 @@ class Bullet extends GameObject {
         this.direction = args.direction;
     }
 
-    die() {
-        this.delete = true;
-    }
-
-
     update() {
         if (this.direction === "up" ) {
             this.position.y -= this.speed; // when enemy shoots

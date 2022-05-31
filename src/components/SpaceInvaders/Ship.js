@@ -48,14 +48,13 @@ class Ship extends GameObject {
         }
     }
 
-    // drawing ship through Canvas
     render(state) {
         
-        // to keep ship within frame
-        if (this.position.x > 600) {
+        // to keep ship within frame & wrap
+        if (this.position.x > state.screen.width) {
             this.position.x = 0;
         } else if (this.position.x < 0 ) {
-            this.position.x = 600;
+            this.position.x = state.screen.width;
         }
 
         this.renderBullets(state)

@@ -1,4 +1,4 @@
-export default class GameObject {
+class GameObject {
 	constructor(args){
 		this.position = args.position;
 		this.onDie = args.onDie;
@@ -29,3 +29,5 @@ export default class GameObject {
 	    }
 	}
 }
+
+export default GameObject;

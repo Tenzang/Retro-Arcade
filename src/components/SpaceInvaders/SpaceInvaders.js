@@ -5,6 +5,7 @@ import './Space.scss'
 import Enemy from './Enemy'
 import Controls from "../UI/Controls";
 import { checkCollisionsWith } from "./Helper";
+import GameOverScreen from "./GameOverScreen";
 
 
 const width = 620;
@@ -24,6 +25,7 @@ class Space extends Component {
                 width: width,
                 height: height
             },
+            score: 0,
             gameState: GameState.StartScreen,
             context: null
         };
@@ -36,6 +38,7 @@ class Space extends Component {
     handleKeys(value, e) {
         let keys = this.pressedKeys;
         const { key } = e;
+        console.log('key pressed', key)
         switch(key) {
             case 'ArrowLeft':
                 keys.left = value;
@@ -45,7 +48,6 @@ class Space extends Component {
                 break;
             case ' ':
                 keys.space = value;
-                console.log(e, value)
                 break;
             case 'Enter':
                 keys.enter = value;
@@ -69,6 +71,7 @@ class Space extends Component {
 
     start() {
         let ship = new Ship({
+            onDie: this.die.bind(this),
             radius: 15,
             speed: 2.5,
             position: {
@@ -77,20 +80,30 @@ class Space extends Component {
             }})
 
         this.ship = ship;
-        this.createEnemy(24);
-        this.setState({ gameState: GameState.Playing });
+        this.enemies = []
+        this.createEnemy(24); // how many enemy ships do you want
+        this.setState({ 
+            gameState: GameState.Playing,
+            score: 0
+        });
+        console.log('started -set to playNow', Date.now())
     }
 
+
     // game loop --> run continuously --> for reacting to user input continuously.
-    update(currentFrame) {
+    update() {
         const keys = this.pressedKeys;
+
         if ( this.state.gameState === GameState.StartScreen && keys.enter ) {
             this.start();
         }
 
+        if ( this.state.gameState === GameState.GameOver && keys.enter ) {
+            this.setState({ gameState: GameState.StartScreen })
+        }
+
         const context = this.state.context;
         context.save();
-        context.fillRect(0,0, this.state.width, this.state.height);
         context.globalAlpha = 1;
 
         context.clearRect(0,0, this.state.screen.width, this.state.screen.height) // clearing the screen
@@ -102,6 +115,7 @@ class Space extends Component {
                 this.ship.render(this.state);
                 this.renderEnemy(this.state);
 
+
                 // check your bullets vs enemy
                 checkCollisionsWith(this.ship.bullets, this.enemies);
 
@@ -110,10 +124,34 @@ class Space extends Component {
                 for (let i = 0; i < this.enemies.length; i++) {
                     checkCollisionsWith(this.enemies[i].bullets, [this.ship]); // check enemy bullets vs player
                 }
+                console.log('game state playing & checking collision', Date.now())
             }
+
+
+            if (this.enemies.length === 0) {
+                this.createEnemy(24)
+                //this.setState({ gameState: GameState.GameOver });
+              }
         }
+
+
+
+
         requestAnimationFrame(() => { this.update() }); // requestAnimationFrame is smoother than setInterval()
-        // console.log('frame animation')
+    }
+
+    increaseScore(val) {
+        this.setState({ score: this.state.score + 200 })
+    }
+
+
+    die() {
+        return new Promise(() => {
+            this.setState({ gameState: GameState.GameOver });
+            console.log('set game over', Date.now())
+            this.ship = null;
+            this.invaders = [];
+        })
     }
 
     // create enemy and place on the right of previous, otherwise new row
@@ -125,7 +163,8 @@ class Space extends Component {
             const enemy = new Enemy({
                 position: {x: newPosition.x, y: newPosition.y},
                 speed: 1,
-                radius: 40
+                radius: 40, 
+                onDie: this.increaseScore.bind(this, false)
             });
 
             newPosition.x += enemy.radius + 15;
@@ -189,6 +228,8 @@ class Space extends Component {
             <div className="SpaceInvaders">
                 <canvas ref="canvas" width={width} height={height}/>
                 { this.state.gameState === GameState.StartScreen && <Title /> } {/*  only render on initial state plz.. */}
+                { this.state.gameState === GameState.GameOver && <GameOverScreen score={ this.state.score } />}
+                <h2>Score: { this.state.score } </h2>
                 <Controls handleKeys={ this.handleKeys }/>
             </div>
         )
