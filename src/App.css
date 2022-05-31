@@ -97,9 +97,11 @@ body {
     }
 
     .siteName {
-        font-size: 2em;
+        font-size: 1.5em;
         font-weight: 300;
         margin-bottom: 0;
+        padding: 0.5rem 2.5rem 2rem;
+        height: 5px;
     }
 
     .swiper-button-next, .swiper-button-prev {
