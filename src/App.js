@@ -10,6 +10,7 @@ import 'swiper/css/navigation'
 import SpaceInvaders from './components/SpaceInvaders/SpaceInvaders'
 import Controls from './components/UI/Controls';
 import Pong from './components/pong/Pong';
+import Video from './components/UI/videoBG';
 
 const App = () => {
 
@@ -57,6 +58,7 @@ const App = () => {
             </Swiper>
         </div>
         <Controls name={game} />
+        <Video />
       </div>
      );
     
