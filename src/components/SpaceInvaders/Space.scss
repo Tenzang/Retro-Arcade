@@ -3,8 +3,8 @@
 .SpaceTitle, .GameOverScreen {
     color: white;
     position: absolute;
-    top: 180px;
-    left: 195px;
+    top: 240px;
+    left: 138px;
 }
 
 .GameOverScreen p {
@@ -36,14 +36,14 @@
       );
     //   margin: 0 auto;
     position: absolute;
-    top: 59px;
-    left: 85px;
+    top: 66px;
+    left: 36px;
     background-size: 400%;
     z-index: -1;
     filter: blur(5px);
     -webkit-filter: blur(5px);
-    width: calc(78.5%);
-    height: calc(84.5%);
+    width: calc(89.5%);
+    height: calc(83.5%);
     animation: glowing-button-85 20s linear infinite;
     transition: opacity 0.3s ease-in-out;
     border-radius: 10px;

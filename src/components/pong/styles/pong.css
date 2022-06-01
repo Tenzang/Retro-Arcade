@@ -25,13 +25,13 @@
           );
         margin: 0 auto;
         position: absolute;
-        top: 59px;
-        left: 95px;
+        top: 67px;
+        left: 46px;
         background-size: 400%;
         z-index: -1;
         filter: blur(5px);
         -webkit-filter: blur(5px);
-        width: calc(76%);
+        width: calc(87%);
         height: calc(90%);
         animation: glowing-button-85 20s linear infinite;
         transition: opacity 0.3s ease-in-out;
