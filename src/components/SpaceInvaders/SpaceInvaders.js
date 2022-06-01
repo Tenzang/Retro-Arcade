@@ -216,9 +216,16 @@ class Space extends Component {
     }
 
     handleStart = (e) => {
+        // e.preventDefault();
+        // const { pressedKeys } = this;
+        // pressedKeys.enter = true;
+
         e.preventDefault();
-        const { pressedKeys } = this;
-        pressedKeys.enter = true;
+        if (e.type === "mousedown") {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
+        } else {
+            document.dispatchEvent(new KeyboardEvent('keyup', {'key': 'Enter'}));
+        }
     }
 
     render() {
@@ -231,7 +238,7 @@ class Space extends Component {
                 <div className='start-Points'>
                     <div></div>
                     <div>
-                        <button className="reset button-85" onClick={(e) => this.handleStart(e) }>START</button>
+                        <button className="reset button-85" onMouseDown={(e) => this.handleStart(e) } onMouseUp={(e) => this.handleStart(e) }>START</button>
                     </div>
                     <div className="points">Score: { this.state.score } </div>
                 </div>
