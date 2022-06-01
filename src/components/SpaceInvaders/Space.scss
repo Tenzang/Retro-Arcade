@@ -20,6 +20,10 @@
     border-radius: 5px;
 }
 
+.enterSpace {
+    z-index: 10;
+}
+
 .SpaceInvaders:before {
     content: " ";
     background: linear-gradient(

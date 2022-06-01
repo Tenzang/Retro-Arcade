@@ -238,7 +238,7 @@ class Space extends Component {
                 <div className='start-Points'>
                     <div></div>
                     <div>
-                        <button className="reset button-85" onMouseDown={(e) => this.handleStart(e) } onMouseUp={(e) => this.handleStart(e) }>START</button>
+                        <button className="reset button-85 enterSpace" onMouseDown={(e) => this.handleStart(e) } onMouseUp={(e) => this.handleStart(e) }>START</button>
                     </div>
                     <div className="points">Score: { this.state.score } </div>
                 </div>
