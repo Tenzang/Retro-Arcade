@@ -25,6 +25,7 @@ Deployed at: https://retro-arcade.netlify.app/
     * Keyboard input 
     * On-screen buttons
 * Optimised for mobile and desktop
+* Video background / Static image if video not supported
 * Tetris: 
     * Created in React
     * Start/Pause
@@ -61,7 +62,7 @@ Deployed at: https://retro-arcade.netlify.app/
 ## Bugs
 * Tetris - tetromino sometimes leaves a random block from a previous position it occupied. We have been unable to consistently recreate the bug, but have found slower machines to encounter the bug more frequently.
 * Snake - lag in changing the direction of the snake. 
-
+* FOUC 
 
 -----
 
