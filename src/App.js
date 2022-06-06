@@ -23,6 +23,7 @@ const App = () => {
     
      return (
       <div style={{ textAlign: "center" }}>
+        <Video />
        <h1 className='siteName'>Retro Arcade</h1>
         <div className='swiper-container'>
             <Swiper
@@ -58,7 +59,6 @@ const App = () => {
             </Swiper>
         </div>
         <Controls name={game} />
-        <Video />
       </div>
      );
     

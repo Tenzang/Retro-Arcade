@@ -4,7 +4,7 @@ import videoBG from "./assets/retro-arcade-background.mp4";
 const Video = () => {
     return (
         <div>
-            <video src={videoBG} autoPlay loop muted />
+            <video src={videoBG} autoPlay={true} loop={true} muted={true} />
         </div>
     )
 }
